@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#D3D3D3"
+    tools:context=".Registration">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvRegister"
+        android:text="User Rigistration"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:textColor="#000"
+        android:layout_marginBottom="20dp"></TextView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvName"
+                android:text="Name"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"></TextView>
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvAddress"
+                android:text="Address"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"></TextView>
+            <EditText
+                android:id="@+id/etAdress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvPhone"
+                android:text="Phone"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"></TextView>
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvEmail"
+                android:text="Email"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"></TextView>
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvPassword"
+                android:text="Password"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"></TextView>
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvConfirmPassword"
+                android:textColor="#000"
+                android:text="Confirm Password"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"></TextView>
+            <EditText
+                android:id="@+id/etconfirmpassword"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"></EditText>
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Signup"
+                android:background="#00008B"
+                android:textColor="#fff"
+                android:textSize="40dp"></Button>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvhaveAcc"
+                android:text="Already Have an Account? Login"
+                android:textStyle="bold"
+                android:gravity="center"
+
+                android:textColor="#000"
+                android:layout_marginBottom="20dp"></TextView>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>
