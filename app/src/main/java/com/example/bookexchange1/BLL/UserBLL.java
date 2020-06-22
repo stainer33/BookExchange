@@ -3,6 +3,7 @@ package com.example.bookexchange1.BLL;
 import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.Response.GeneralResponse;
 
+
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -17,6 +18,7 @@ public class UserBLL {
 //        String password = "test123";
 //        String mobileNo = "545454";
 //        String imageName = "image.jpg";
+
         Call<GeneralResponse> call = userAPI.signUp(user.getEmail(), user.getFullName(), user.getPassword(), user.getMobileNo(), user.getAddress(), user.getProfileImg());
         try {
             Response<GeneralResponse> response=call.execute();
