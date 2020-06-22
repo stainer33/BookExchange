@@ -1,10 +1,12 @@
-package com.example.bookexchange1;
+package com.example.bookexchange1.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.bookexchange1.R;
 
 public class Registration extends AppCompatActivity {
     EditText etName, etAddress, etPhone,etEmail,etPassword;

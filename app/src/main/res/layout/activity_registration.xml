@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#D3D3D3"
-    tools:context=".Registration">
+    tools:context=".UI.Registration">
 
     <TextView
         android:layout_width="match_parent"
