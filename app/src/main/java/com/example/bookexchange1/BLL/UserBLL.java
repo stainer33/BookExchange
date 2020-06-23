@@ -2,6 +2,7 @@ package com.example.bookexchange1.BLL;
 
 import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.Response.GeneralResponse;
+import com.example.bookexchange1.Response.UserResponse;
 
 
 import retrofit2.Call;
@@ -33,6 +34,28 @@ public class UserBLL {
             }
 
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+
+    public boolean login (String email, String password)
+    {
+        Call<UserResponse>call=userAPI.login(email,password);
+        try {
+            Response<UserResponse>response=call.execute();
+            UserResponse userResponse=response.body();
+            if(userResponse.getStatus()=="201")
+            {
+                isSuccess=true;
+            }
+            else
+            {
+                isSuccess=false;
+            }
+        }
+        catch (Exception ex)
+        {
             ex.printStackTrace();
         }
         return isSuccess;
