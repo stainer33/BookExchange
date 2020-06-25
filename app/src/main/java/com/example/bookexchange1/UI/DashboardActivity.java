@@ -64,7 +64,7 @@ BottomNavigationView bottomNavigationView;
     private void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frameLayout, fragment);
+        transaction.replace(R.id.container, fragment);
         transaction.commit();
     }
 
