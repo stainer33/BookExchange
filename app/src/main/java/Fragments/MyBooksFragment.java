@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.bookexchange1.AddBookDialog;
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -54,10 +55,17 @@ public class MyBooksFragment extends Fragment {
         btnAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openDialog();
                 Toast.makeText(getActivity(), "Button Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
+    }
+
+    public void openDialog()
+    {
+        AddBookDialog addBookDialog=new AddBookDialog();
+        addBookDialog.show(getFragmentManager(),"add book");
     }
 }
