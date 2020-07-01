@@ -1,12 +1,14 @@
 package com.example.bookexchange1.Model;
 
 public class User {
+
     private String email;
     private String fullName;
     private String password;
     private String mobileNo;
     private String profileImg;
     private String address;
+
 
     public String getProfileImg() {
         return profileImg;

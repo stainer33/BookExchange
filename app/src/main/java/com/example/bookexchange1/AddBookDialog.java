@@ -45,6 +45,8 @@ public class AddBookDialog extends AppCompatDialogFragment {
         etAuthorName=view.findViewById(R.id.etAuthorName);
         etBookName=view.findViewById(R.id.etBookName);
         btnAddBooks=view.findViewById(R.id.btnAddBooks);
+
+
         return  builder.create();
     }
 }

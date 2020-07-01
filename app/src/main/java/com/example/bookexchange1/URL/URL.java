@@ -1,5 +1,6 @@
 package com.example.bookexchange1.URL;
 
+import com.example.bookexchange1.API.BookAPI;
 import com.example.bookexchange1.API.UserAPI;
 
 import retrofit2.Retrofit;
@@ -14,4 +15,5 @@ public class URL {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     public static final UserAPI userAPI =retrofit.create(UserAPI.class);
+    public  static final BookAPI bookAPI=retrofit.create(BookAPI.class);
 }
