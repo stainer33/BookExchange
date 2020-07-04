@@ -28,17 +28,15 @@
         android:layout_height="wrap_content"
        android:background="#FFFFFF"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="290dp"
-
+        android:layout_marginTop="180dp"
         android:orientation="vertical">
     <TextView
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:text="Muna Madan"
         android:textStyle="bold"
-
         android:layout_marginHorizontal="20sp" />
         <TextView
             android:layout_width="match_parent"
@@ -49,30 +47,43 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:text="About the book"
             android:textStyle="bold"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
             android:layout_marginHorizontal="20sp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:text="@string/detail"
             android:layout_marginTop="5sp"
             android:textAlignment="gravity"
+            android:layout_marginHorizontal="20sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Owner: Rajesh Hamal"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginHorizontal="20sp"/>
+
+        <Spinner android:id="@+id/bookListspinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
             android:layout_marginHorizontal="20sp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Exchange"
             android:textColor="#FFF"
-            android:paddingHorizontal="20sp"
             android:background="@color/colorPrimary"
             android:layout_gravity="end"
-            android:layout_marginEnd="20sp"
+            android:layout_marginEnd="15sp"
             android:layout_marginRight="20sp"
-            android:layout_marginVertical="20sp"/>
+            android:layout_marginVertical="20sp" />
     </LinearLayout>
 
 </RelativeLayout>

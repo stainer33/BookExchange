@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Adapter.BooksListAdapter;
+import Adapter.MyBooksAdapter;
 
 
 public class MyBooksFragment extends Fragment {
@@ -32,7 +33,7 @@ public class MyBooksFragment extends Fragment {
 
 
     private RecyclerView myBooksRecylerView;
-    BooksListAdapter booksListAdapter;
+    MyBooksAdapter booksListAdapter;
     FloatingActionButton btnAddBook;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +49,7 @@ public class MyBooksFragment extends Fragment {
         books.add(new Book("Brokeback Mountain","Annie Proulx",R.drawable.brokebackmountain));
         books.add(new Book("Seto Darti","Amar Neupane",R.drawable.sethodarthi));
 
-        booksListAdapter = new BooksListAdapter(getContext(),books);
+        booksListAdapter = new MyBooksAdapter(getContext(),books);
         myBooksRecylerView.setAdapter(booksListAdapter);
         myBooksRecylerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
