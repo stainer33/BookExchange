@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="#009688"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="25dp"
     tools:context="Fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:text="Profile"
+        android:padding="10dp"
+        android:textSize="35dp"
+        android:textColor="#fff"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/cantora_one"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="string/hello_blank_fragment" />
+        android:layout_height="wrap_content"/>
 
-</FrameLayout>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:src="@drawable/book4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/etNameP"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:drawableLeft="@drawable/male"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/etAddressP"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:drawableLeft="@drawable/location"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/etPhoneP"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:drawableLeft="@drawable/phone"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/etEmailP"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/etPasswordP"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:drawableLeft="@drawable/lock"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/btnUpdateProfile"
+        android:text="Update Profile"
+        android:textColor="#009688"
+        android:fontFamily="@font/cantora_one"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvLogoutP"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Want to Log Out? Click Here"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
