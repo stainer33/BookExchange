@@ -10,25 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".UI.DetailsActivity"></activity>
-        <activity android:name=".UI.DashboardActivity">
+        <activity android:name=".UI.DashboardActivity" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".UI.LoginActivity" android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity android:name=".UI.LoginActivity" />
         <activity android:name=".UI.Registration" android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity android:name=".UI.MainActivity" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
