@@ -4,20 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
-    android:background="#D3D3D3"
+    android:background="@drawable/book5"
     tools:context=".UI.Registration">
+    <!--    android:background="#D3D3D3"-->
 
     <TextView
+        android:id="@+id/tvRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvRegister"
-        android:text="User Rigistration"
-        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/cantora_one"
         android:gravity="center"
+        android:text="User Registration"
+        android:textColor="#fff"
         android:textSize="40dp"
-        android:textColor="#000"
-        android:layout_marginBottom="20dp"></TextView>
+        android:textStyle="bold" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,98 +29,151 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvName"
-                android:text="Name"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:layout_marginBottom="20dp"></TextView>
-            <EditText
-                android:id="@+id/etName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
 
             <TextView
+                android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvAddress"
-                android:text="Address"
-                android:textColor="#000"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/cantora_one"
+                android:text="Name"
+                android:textColor="#fff"
                 android:textSize="20dp"
-                android:layout_marginBottom="20dp"></TextView>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></TextView>
+            <EditText
+                android:id="@+id/etName"
+                android:fontFamily="@font/cantora_one"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></EditText>
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/cantora_one"
+                android:text="Address"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></TextView>
             <EditText
                 android:id="@+id/etAdress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
-            <TextView
+                android:fontFamily="@font/cantora_one"
+                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></EditText>
+
+            <TextView
                 android:id="@+id/tvPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/cantora_one"
                 android:text="Phone"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textSize="20dp"
-                android:layout_marginBottom="20dp"></TextView>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></TextView>
             <EditText
                 android:id="@+id/etPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
-            <TextView
+                android:fontFamily="@font/cantora_one"
+                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></EditText>
+
+            <TextView
                 android:id="@+id/tvEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/cantora_one"
                 android:text="Email"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textSize="20dp"
-                android:layout_marginBottom="20dp"></TextView>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></TextView>
             <EditText
                 android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
-            <TextView
+                android:fontFamily="@font/cantora_one"
+                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></EditText>
+
+            <TextView
                 android:id="@+id/tvPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/cantora_one"
                 android:text="Password"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textSize="20dp"
-                android:layout_marginBottom="20dp"></TextView>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></TextView>
             <EditText
                 android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
-            <TextView
+                android:fontFamily="@font/cantora_one"
+                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></EditText>
+
+            <TextView
                 android:id="@+id/tvConfirmPassword"
-                android:textColor="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/cantora_one"
                 android:text="Confirm Password"
+                android:textColor="#fff"
                 android:textSize="20dp"
-                android:layout_marginBottom="20dp"></TextView>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></TextView>
             <EditText
                 android:id="@+id/etconfirmpassword"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/cantora_one"
+                android:textColor="#fff"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></EditText>
 
-                android:layout_height="wrap_content"></EditText>
             <Button
                 android:id="@+id/btnSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Signup"
                 android:background="#00008B"
+                android:fontFamily="@font/cantora_one"
+                android:text="Signup"
                 android:textColor="#fff"
-                android:textSize="40dp"></Button>
+                android:textSize="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"></Button>
+
             <TextView
+                android:id="@+id/tvhaveAcc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvhaveAcc"
-                android:text="Already Have an Account? Login"
-                android:textStyle="bold"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/cantora_one"
                 android:gravity="center"
-
-                android:textColor="#000"
-                android:layout_marginBottom="20dp"></TextView>
+                android:text="Already Have an Account? Login"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"></TextView>
         </LinearLayout>
 
     </ScrollView>
