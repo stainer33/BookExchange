@@ -1,11 +1,14 @@
 package com.example.bookexchange1.API;
 
+import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.Response.GeneralResponse;
 import com.example.bookexchange1.Response.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface UserAPI {
@@ -16,4 +19,7 @@ public interface UserAPI {
     @FormUrlEncoded
     @POST("login")
     Call<UserResponse>login(@Field("email")String email, @Field("password") String password);
+
+    @GET("me")
+    Call<User>getProfile(@Header("token") String token);
 }
