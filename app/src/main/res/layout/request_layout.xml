@@ -34,27 +34,36 @@
                 android:id="@+id/txtSender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               android:layout_marginVertical="10dp"
+                android:layout_marginVertical="10dp"
                 android:layout_marginHorizontal="10dp"
-                android:textStyle="bold"
+                android:text="You requested"
                 app:layout_constraintStart_toEndOf="@+id/profileImageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="requested you to exchange"
+                android:text="Rajesh Hamal"
+                android:textStyle="bold"
                 android:layout_marginVertical="10dp"
                 android:layout_marginLeft="5dp"
                 app:layout_constraintStart_toEndOf="@+id/txtSender"
                 app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/txtAction"/>
+                android:id="@+id/txtReceiver"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:text="to exchange"
+                app:layout_constraintStart_toEndOf="@+id/txtReceiver"
+                app:layout_constraintTop_toTopOf="@+id/txtReceiver" />
 
             <TextView
                 android:id="@+id/txtRequestedBook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:text="Hemlet"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 app:layout_constraintStart_toEndOf="@+id/profileImageView"
@@ -67,16 +76,17 @@
                 android:layout_marginHorizontal="5dp"
                 android:text="with"
                 app:layout_constraintStart_toEndOf="@+id/txtRequestedBook"
-                app:layout_constraintTop_toBottomOf="@+id/txtAction" />
+                app:layout_constraintTop_toTopOf="@+id/txtRequestedBook" />
 
             <TextView
                 android:id="@+id/txtProposedBook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_marginHorizontal="5dp"
+                android:text="Muna Madan"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/txtAction" />
+                app:layout_constraintTop_toTopOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/txtTime"
@@ -84,39 +94,39 @@
                 android:layout_height="wrap_content"
                 android:text="dddd"
                 android:textSize="12dp"
-                android:layout_marginHorizontal="5dp"
                 app:layout_constraintStart_toStartOf="@+id/txtRequestedBook"
                 app:layout_constraintTop_toBottomOf="@+id/txtRequestedBook" />
 
-            <Button
-                android:id="@+id/btnAccept"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:text="Accept"
-                android:textSize="15sp"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="#FFFF"
-                android:layout_marginVertical="5dp"
-                android:layout_marginHorizontal="5dp"
-                android:fontFamily="@font/cantora_one"
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#32CD32"
+                android:padding="3sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_edit"
+                android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="@+id/txtTime"
                 app:layout_constraintTop_toBottomOf="@+id/txtTime" />
 
-            <Button
-                android:id="@+id/btnDecline"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:background="#FF00"
-                android:layout_marginHorizontal="20dp"
-                android:text="Decline"
-                android:textColor="#FFFF"
-                android:fontFamily="@font/cantora_one"
-                app:layout_constraintStart_toEndOf="@+id/btnAccept"
-                app:layout_constraintTop_toTopOf="@+id/btnAccept" />
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="#FF0000"
+                android:layout_marginTop="10dp"
+                android:padding="3dp"
+                android:src="@drawable/ic_delete"
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toEndOf="@+id/btnEdit"
+                app:layout_constraintTop_toBottomOf="@+id/txtTime" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
     </androidx.cardview.widget.CardView>
 </LinearLayout>
+
 
