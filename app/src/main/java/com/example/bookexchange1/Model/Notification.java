@@ -6,6 +6,15 @@ public class Notification {
     private String proposedBook;
     private String time;
     private int profileImg;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getSender() {
         return sender;
@@ -47,11 +56,12 @@ public class Notification {
         this.profileImg = profileImg;
     }
 
-    public Notification(String sender, String requestedBook, String proposedBook, String time, int profileImg) {
+    public Notification(String sender, String requestedBook, String proposedBook, String time, int profileImg,String status) {
         this.sender = sender;
         this.requestedBook = requestedBook;
         this.proposedBook = proposedBook;
         this.time = time;
         this.profileImg = profileImg;
+        this.status=status;
     }
 }

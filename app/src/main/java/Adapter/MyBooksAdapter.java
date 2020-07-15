@@ -1,7 +1,6 @@
 package Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.R;
-import com.example.bookexchange1.UI.DetailsActivity;
 
 import java.util.List;
 
@@ -43,6 +41,7 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
         holder.authorName.setText(book.getAuthor());
 
     }
+
 
 
     @Override
