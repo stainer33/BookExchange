@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.bookexchange1.AddBookDialog;
@@ -31,10 +34,10 @@ public class MyBooksFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    List<Book> books;
     private RecyclerView myBooksRecylerView;
     MyBooksAdapter booksListAdapter;
-    FloatingActionButton btnAddBook;
+    FloatingActionButton btnAddBook; EditText etSearch;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,8 +45,9 @@ public class MyBooksFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_my_books, container, false);
         myBooksRecylerView=view.findViewById(R.id.myBooksRecyclerView);
         btnAddBook=view.findViewById(R.id.btnAddbook);
+        etSearch=view.findViewById(R.id.etSearch);
 
-        List<Book> books= new ArrayList<>();
+       books= new ArrayList<>();
         books.add(new Book("Catch 22","Joseph Heller",R.drawable.catch22));
         books.add( new Book("Muna Madan","Laxmi Prasad Devkota",R.drawable.munamadan));
         books.add(new Book("Brokeback Mountain","Annie Proulx",R.drawable.brokebackmountain));
@@ -60,10 +64,38 @@ public class MyBooksFragment extends Fragment {
                 Toast.makeText(getActivity(), "Button Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
 
         return view;
     }
+    private void filter(String text) {
+        List<Book>filteredList=new ArrayList<>();
 
+        for(Book book: books)
+        {
+            if(book.getName().toLowerCase().contains(text.toLowerCase()))
+            {
+                filteredList.add(book);
+            }
+        }
+        booksListAdapter.filterList(filteredList);
+    }
     public void openDialog()
     {
         AddBookDialog addBookDialog=new AddBookDialog();

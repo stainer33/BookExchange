@@ -48,6 +48,12 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
     public int getItemCount() {
         return books.size();
     }
+
+    public void filterList(List<Book> filteredList) {
+        books = filteredList;
+        notifyDataSetChanged();
+    }
+
     public  class ViewHolder extends  RecyclerView.ViewHolder
     {
         ImageView bookImg;

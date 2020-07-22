@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.R;
@@ -26,8 +29,8 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
         // Required empty public constructor
     }
-
-    private RecyclerView booksRecylerView;
+    List<Book>books;
+    private RecyclerView booksRecylerView; EditText etSearch;
     BooksListAdapter booksListAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,9 +38,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         booksRecylerView=view.findViewById(R.id.booksRecyclerView);
+        etSearch=view.findViewById(R.id.etSearch);
 
-
-        List<Book>books= new ArrayList<>();
+       books = new ArrayList<>();
       books.add( new Book("Muna Madan","Laxmi Prasad Devkota",R.drawable.munamadan));
       books.add(new Book("Seto Darti","Amar Neupane",R.drawable.sethodarthi));
       books.add(new Book("Brokeback Mountain","Annie Proulx",R.drawable.brokebackmountain));
@@ -45,7 +48,41 @@ public class HomeFragment extends Fragment {
          booksListAdapter = new BooksListAdapter(getContext(),books);
         booksRecylerView.setAdapter(booksListAdapter);
     booksRecylerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
+
+
 //        return  view;
         return view;
     }
+
+    private void filter(String text) {
+        List<Book>filteredList=new ArrayList<>();
+
+        for(Book book: books)
+        {
+            if(book.getName().toLowerCase().contains(text.toLowerCase()))
+            {
+                filteredList.add(book);
+            }
+        }
+        booksListAdapter.filterList(filteredList);
+    }
+
 }

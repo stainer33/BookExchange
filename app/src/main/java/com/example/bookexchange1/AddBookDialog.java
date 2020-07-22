@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,25 +29,20 @@ public class AddBookDialog extends AppCompatDialogFragment {
         View view=inflater.inflate((R.layout.layout_add_book),null);
 
         builder.setView(view)
-                .setTitle("Add Book")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                .setTitle("Add Book");
 
-                    }
-                })
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
 
         etAuthorName=view.findViewById(R.id.etAuthorName);
         etBookName=view.findViewById(R.id.etBookName);
         btnAddBooks=view.findViewById(R.id.btnAddBooks);
 
 
+        btnAddBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), etBookName.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
         return  builder.create();
     }
 }

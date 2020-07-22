@@ -15,6 +15,40 @@
         android:hint="Author of the book"
         android:layout_margin="15dp"
         android:id="@+id/etAuthorName"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description of the book"
+        android:inputType="textMultiLine"
+        android:lines="8"
+    android:minLines="2"
+        android:gravity="top|left"
+    android:maxLines="10"
+        android:layout_margin="15dp"
+        android:id="@+id/etDescription"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="15dp"
+        android:text="Select cover of the book"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select image"
+            android:id="@+id/btnImage"
+            android:layout_marginHorizontal="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="image.jpg"
+            android:id="@+id/txtImageName"/>
+
+    </LinearLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

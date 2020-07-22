@@ -6,7 +6,9 @@ import com.example.bookexchange1.Response.ImageResponse;
 import com.example.bookexchange1.Response.UserResponse;
 
 import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -17,12 +19,12 @@ import retrofit2.http.Part;
 
 public interface UserAPI {
     @FormUrlEncoded
-    @POST("/api/signup")
-    Call<GeneralResponse> signUp(@Field("email")String email, @Field("name")String fullName, @Field("password")String password, @Field("phone")String mobileNo, @Field("address")String address, @Field("profileImg")String profileImg );
+    @POST("register")
+    Call<ResponseBody> signUp(@Field("email")String email, @Field("name")String fullName, @Field("password")String password, @Field("phone")String mobileNo, @Field("address")String address);
 
     @FormUrlEncoded
-    @POST("/api/login")
-    Call<UserResponse>login(@Field("email")String email, @Field("password") String password);
+    @POST("login")
+    Call<ResponseBody>login(@Field("email")String email, @Field("password") String password);
 
     @GET("me")
     Call<User>getProfile(@Header("token") String token);

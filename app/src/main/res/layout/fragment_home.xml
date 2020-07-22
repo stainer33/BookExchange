@@ -4,9 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="Fragments.HomeFragment"
-    android:background="#C0C0C0">
+    android:background="#C0C0C0"
+    android:orientation="vertical">
 
-
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:hint="Search for books"
+    android:id="@+id/etSearch"/>
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
