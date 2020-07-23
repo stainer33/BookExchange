@@ -26,7 +26,7 @@ public interface UserAPI {
     @POST("login")
     Call<ResponseBody>login(@Field("email")String email, @Field("password") String password);
 
-    @GET("me")
+    @GET("ap")
     Call<User>getProfile(@Header("token") String token);
 
     @Multipart
