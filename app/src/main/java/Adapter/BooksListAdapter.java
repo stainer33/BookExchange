@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.R;
 import com.example.bookexchange1.UI.DetailsActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,13 +44,19 @@ public class BooksListAdapter extends RecyclerView.Adapter <BooksListAdapter.Vie
         //attaching  data one by one
         final Book book=books.get(position);
         holder.bookName.setText(book.getName());
-        holder.bookImg.setBackgroundResource(book.getImage());
+//        holder.bookImg.setBackgroundResource(book.getImage());
+        holder.bookName.setText(book.getName());
+        Picasso.with(context)
+                .load("http://10.0.2.2:8000/storage/books/July2020/"+book.getImage())
+
+                .into(holder.bookImg);
         holder.authorName.setText(book.getAuthor());
         holder.btnExchange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("id",book.getId());
+                intent.putExtra("book",book);
+                //intent.putExtra("id",book.getId());
                 context.startActivity(intent);
             }
         });

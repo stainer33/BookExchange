@@ -23,7 +23,7 @@ import com.example.bookexchange1.API.UserAPI;
 import com.example.bookexchange1.BLL.UserBLL;
 import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.R;
-import com.example.bookexchange1.Response.ImageResponse;
+
 import com.example.bookexchange1.URL.URL;
 
 import java.io.File;
@@ -72,9 +72,9 @@ public class Registration extends AppCompatActivity {
                 String password=etPassword.getText().toString();
                 String email="";
                 String image= "";
-                User user = new User (email,name,password,phone,image,address);
+
                 UserBLL userBLL= new UserBLL();
-                Boolean result = userBLL.signUp(user);
+                Boolean result = userBLL.signUp(email,name,password,phone,address);
                 if(result==true)
                 {
                     Toast.makeText(Registration.this, "Registration done", Toast.LENGTH_SHORT).show();
@@ -124,18 +124,18 @@ public class Registration extends AppCompatActivity {
         Retrofit retrofit = URL.retrofit;
         UserAPI userAPI = URL.userAPI;
         // Call<Void>voidCall=userAPI.signUp(email,fullName,password,mobileNo,address);
-        Call<ImageResponse> responseBodyCall = userAPI.uploadImage(body);
-
-        StrictModeClass.StrictMode();
-        //Synchronous method
-        try {
-            Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
-            imageName = imageResponseResponse.body().getFilename();
-            Toast.makeText(this, "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            Toast.makeText(this, "Error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+//        Call<ImageResponse> responseBodyCall = userAPI.uploadImage(body);
+//
+//        StrictModeClass.StrictMode();
+//        //Synchronous method
+//        try {
+//            Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
+//            imageName = imageResponseResponse.body().getFilename();
+//            Toast.makeText(this, "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
+//        } catch (IOException e) {
+//            Toast.makeText(this, "Error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//            e.printStackTrace();
+//        }
     }
 
     private void CheckPermission() {

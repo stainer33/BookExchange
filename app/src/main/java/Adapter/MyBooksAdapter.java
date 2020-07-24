@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,7 +38,11 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Book book=books.get(position);
         holder.bookName.setText(book.getName());
-        holder.bookImg.setBackgroundResource(book.getImage());
+        Picasso.with(context)
+                .load("http://10.0.2.2:8000/storage/users/July2020/"+book.getImage())
+
+                .into(holder.bookImg);
+    //    holder.bookImg.setBackgroundResource(book.getImage());
         holder.authorName.setText(book.getAuthor());
 
     }

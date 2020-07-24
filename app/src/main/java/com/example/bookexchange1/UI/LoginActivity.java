@@ -12,8 +12,9 @@ import android.widget.Toast;
 
 import com.example.bookexchange1.API.UserAPI;
 import com.example.bookexchange1.BLL.UserBLL;
+import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.R;
-import com.example.bookexchange1.Response.UserResponse;
+
 
 import org.json.JSONObject;
 
@@ -53,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
           if(result)
           {
               Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+              User.t_email=email;
               Intent intent=new Intent(LoginActivity.this,DashboardActivity.class);
               startActivity(intent);
           }

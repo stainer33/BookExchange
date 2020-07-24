@@ -13,6 +13,10 @@
     android:layout_margin="15dp"
     android:hint="Search for books"
     android:id="@+id/etSearch"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/test"/>
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"

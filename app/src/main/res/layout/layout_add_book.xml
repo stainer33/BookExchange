@@ -26,6 +26,11 @@
     android:maxLines="10"
         android:layout_margin="15dp"
         android:id="@+id/etDescription"/>
+    <Spinner android:id="@+id/Conditionspinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:layout_marginHorizontal="20sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +49,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="image.jpg"
+
             android:id="@+id/txtImageName"/>
 
     </LinearLayout>

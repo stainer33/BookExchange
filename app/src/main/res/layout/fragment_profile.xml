@@ -25,14 +25,16 @@
 
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfile"
             android:layout_gravity="center"
-            android:src="@drawable/book4"
+
             android:layout_marginLeft="15dp"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginBottom="20dp" />
     <TextView
-        android:text="Rajesh Hamal"
+        android:id="@+id/txtName"
+
         android:padding="10dp"
         android:textSize="30dp"
         android:textColor="#000"
@@ -68,8 +70,8 @@
 </LinearLayout>
 
     <EditText
-        android:text="Nepal"
-        android:id="@+id/etAddressP"
+
+        android:id="@+id/txtAddress"
         android:textColor="#000"
         android:textColorHint="#fff"
         android:fontFamily="@font/cantora_one"
@@ -86,8 +88,8 @@
         android:editable="false"/>
 
     <EditText
-        android:text="980000444"
-        android:id="@+id/etPhoneP"
+
+        android:id="@+id/txtPhone"
         android:textColor="#000"
         android:textColorHint="#fff"
         android:fontFamily="@font/cantora_one"
@@ -102,8 +104,8 @@
         android:layout_marginHorizontal="20dp"
         android:editable="false"/>
     <EditText
-        android:text="shankar@gmail.com"
-        android:id="@+id/etEmailP"
+
+        android:id="@+id/txtEmail"
         android:textColor="#000"
         android:textColorHint="#fff"
         android:fontFamily="@font/cantora_one"
