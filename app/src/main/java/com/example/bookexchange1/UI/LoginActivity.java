@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.bookexchange1.URL.URL.userAPI;
+
 
 public class LoginActivity extends AppCompatActivity {
  EditText etEmail, etPassword;

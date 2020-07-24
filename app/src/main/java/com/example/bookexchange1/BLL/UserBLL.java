@@ -50,7 +50,7 @@ public class UserBLL {
 
         final Call<ResponseBody>call=userAPI.login(email,password);
 
-        StrictModeClass.StrictMode();
+//        StrictModeClass.StrictMode();
                 try {
                     Response<ResponseBody>   response = call.execute();
                     final Response<ResponseBody> finalResponse = response;
