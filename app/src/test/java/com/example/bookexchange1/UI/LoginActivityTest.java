@@ -21,23 +21,24 @@ public class LoginActivityTest {
 
     @Test
     public void testLogin() {
-//        UserBLL userBLL = new UserBLL();
-        final Call<ResponseBody> call = userAPI.login("test@test.com", "test");
+        UserBLL userBLL = new UserBLL();
+//        final Call<ResponseBody> call = userAPI.login("test@test.com", "test");
+//
+////        StrictModeClass.StrictMode();
+//        try {
+//            Response<ResponseBody> response = call.execute();
+//            final Response<ResponseBody> finalResponse = response;
+//            int value = response.code();
+////            JSONObject jobj = new JSONObject((response.body().string()));
+        boolean result = userBLL.login("sujit@gmail.com", "12345678");
+        assertEquals(true, result);
 
-//        StrictModeClass.StrictMode();
-        try {
-            Response<ResponseBody> response = call.execute();
-            final Response<ResponseBody> finalResponse = response;
-            int value = response.code();
-//            JSONObject jobj = new JSONObject((response.body().string()));
-//        boolean result = userBLL.login("sujit@gmail.com", "12345678");
-            assertEquals(200, value);
-
-
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
+//
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
     }
 }

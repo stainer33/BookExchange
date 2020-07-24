@@ -55,19 +55,20 @@ public class UserBLL {
                     Response<ResponseBody>   response = call.execute();
                     final Response<ResponseBody> finalResponse = response;
                     int value=response.code();
-                    JSONObject jobj = new JSONObject((response.body().string()));
+//                    JSONObject jobj = new JSONObject((response.body().string()));
 
 
-                   String status = (jobj.getString("status"));
-                    JSONObject object1 = jobj.getJSONObject("success");
-                    String token=object1.getString("token");
+//                   String status = (jobj.getString("status"));
+//                    JSONObject object1 = jobj.getJSONObject("success");
+//                    String token=object1.getString("token");
                   if(response.code()==200)
                   {
                       isSuccess=true;
                   }
                   else {isSuccess=false;}
 
-                } catch (IOException | JSONException e) {
+                }
+                catch (IOException e) {
                     e.printStackTrace();
                 }
 
