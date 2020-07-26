@@ -6,11 +6,11 @@ public class Book implements Serializable {
     private int id;
     private String name;
     private String author;
-    private String owner;
+    private Owner owner;
     private String image;
     private String des;
 
-    public Book(int id,String name, String author, String image,String owner,String des) {
+    public Book(int id,String name, String author, String image,Owner owner,String des) {
         this.id=id;
         this.name = name;
         this.author = author;
@@ -27,11 +27,11 @@ public class Book implements Serializable {
         this.des = des;
     }
 
-    public String getOwner() {
+    public Owner getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(Owner owner) {
         this.owner = owner;
     }
 

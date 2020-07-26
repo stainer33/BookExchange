@@ -3,6 +3,7 @@ package com.example.bookexchange1.BLL;
 import android.widget.Toast;
 
 import com.example.bookexchange1.Model.Book;
+import com.example.bookexchange1.Model.Owner;
 import com.example.bookexchange1.Model.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -79,12 +80,13 @@ public class BookBLL {
                 String author =jsonObject.getString("author");
                 String owner =object.getString("name");
                 String email=object.getString("email");
+                int userId=object.getInt("id");
                 String path =jsonObject.getString("image");
                 String image=path.substring(path.lastIndexOf("/")+1);
                 String des=jsonObject.getString("description");
 
                 if(!User.t_email.equals(email)){
-                    books.add(new Book(id,name,author,image,owner,des));}
+                    books.add(new Book(id,name,author,image,new Owner(userId,owner),des));}
                 //names.add(jsonObject.getString("name"));
             }
         }
@@ -118,12 +120,13 @@ public class BookBLL {
                 String author =jsonObject.getString("author");
                 String owner =object.getString("name");
                 String email=object.getString("email");
+                int userId=object.getInt("id");
                 String path =jsonObject.getString("image");
                 String image=path.substring(path.lastIndexOf("/")+1);
                 String des=jsonObject.getString("description");
 
                 if(User.t_email.equals(email)){
-                    books.add(new Book(id,name,author,image,owner,des));}
+                    books.add(new Book(id,name,author,image,new Owner(userId,owner),des));}
                 //names.add(jsonObject.getString("name"));
             }
         }

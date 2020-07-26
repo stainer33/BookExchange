@@ -1,6 +1,7 @@
 package com.example.bookexchange1.URL;
 
 import com.example.bookexchange1.API.BookAPI;
+import com.example.bookexchange1.API.ExchangeAPI;
 import com.example.bookexchange1.API.UserAPI;
 
 import java.util.concurrent.TimeUnit;
@@ -20,4 +21,5 @@ public class URL {
             .build();
     public static final UserAPI userAPI =retrofit.create(UserAPI.class);
     public  static final BookAPI bookAPI=retrofit.create(BookAPI.class);
+    public static final ExchangeAPI exchangeAPI=retrofit.create(ExchangeAPI.class);
 }

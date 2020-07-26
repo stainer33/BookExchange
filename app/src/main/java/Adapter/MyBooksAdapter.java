@@ -39,7 +39,7 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
         final Book book=books.get(position);
         holder.bookName.setText(book.getName());
         Picasso.with(context)
-                .load("http://10.0.2.2:8000/storage/users/July2020/"+book.getImage())
+                .load("http://10.0.2.2:8000/storage/books/July2020/"+book.getImage())
 
                 .into(holder.bookImg);
     //    holder.bookImg.setBackgroundResource(book.getImage());
