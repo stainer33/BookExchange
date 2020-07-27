@@ -2,9 +2,10 @@ package com.example.bookexchange1.Model;
 
 public class User {
 
+    public  static String t_email;
+    public static int id;
     private String email;
     private String fullName;
-    private String password;
     private String mobileNo;
     private String profileImg;
     private String address;
@@ -34,13 +35,7 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getMobileNo() {
         return mobileNo;
@@ -58,10 +53,10 @@ public class User {
         this.address = address;
     }
 
-    public User(String email, String fullName, String password, String mobileNo, String address,String profileImg) {
+    public User(String email, String fullName, String mobileNo, String address,String profileImg) {
         this.email = email;
         this.fullName = fullName;
-        this.password = password;
+
         this.mobileNo = mobileNo;
         this.address = address;
         this.profileImg=profileImg;

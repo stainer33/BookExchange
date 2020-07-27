@@ -1,9 +1,6 @@
 package com.example.bookexchange1.API;
 
 import com.example.bookexchange1.Model.User;
-import com.example.bookexchange1.Response.GeneralResponse;
-import com.example.bookexchange1.Response.ImageResponse;
-import com.example.bookexchange1.Response.UserResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -16,6 +13,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface UserAPI {
     @FormUrlEncoded
@@ -26,10 +24,11 @@ public interface UserAPI {
     @POST("login")
     Call<ResponseBody>login(@Field("email")String email, @Field("password") String password);
 
-    @GET("me")
-    Call<User>getProfile(@Header("token") String token);
 
-    @Multipart
-    @POST("upload")
-    Call<ImageResponse>uploadImage(@Part MultipartBody.Part imageFile);
+    @GET("user/{email}")
+    Call<ResponseBody>getProfile(@Path("email") String email);
+
+//    @Multipart
+//    @POST("upload")
+//    Call<ImageResponse>uploadImage(@Part MultipartBody.Part imageFile);
 }

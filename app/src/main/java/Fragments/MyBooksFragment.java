@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.bookexchange1.AddBookDialog;
+import com.example.bookexchange1.BLL.BookBLL;
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,17 +43,13 @@ public class MyBooksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_my_books, container, false);
+            View view =inflater.inflate(R.layout.fragment_my_books, container, false);
         myBooksRecylerView=view.findViewById(R.id.myBooksRecyclerView);
         btnAddBook=view.findViewById(R.id.btnAddbook);
         etSearch=view.findViewById(R.id.etSearch);
 
-       books= new ArrayList<>();
-        books.add(new Book("Catch 22","Joseph Heller",R.drawable.catch22));
-        books.add( new Book("Muna Madan","Laxmi Prasad Devkota",R.drawable.munamadan));
-        books.add(new Book("Brokeback Mountain","Annie Proulx",R.drawable.brokebackmountain));
-        books.add(new Book("Seto Darti","Amar Neupane",R.drawable.sethodarthi));
-
+        BookBLL bookBLL= new BookBLL();
+        books= bookBLL.getMyBook();
         booksListAdapter = new MyBooksAdapter(getContext(),books);
         myBooksRecylerView.setAdapter(booksListAdapter);
         myBooksRecylerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -61,7 +58,7 @@ public class MyBooksFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 openDialog();
-                Toast.makeText(getActivity(), "Button Clicked", Toast.LENGTH_SHORT).show();
+
             }
         });
         etSearch.addTextChangedListener(new TextWatcher() {
