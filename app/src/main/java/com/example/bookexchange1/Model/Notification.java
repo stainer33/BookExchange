@@ -1,6 +1,7 @@
 package com.example.bookexchange1.Model;
 
 public class Notification {
+    private int id;
     private String sender;
     private  String requestedBook;
     private String proposedBook;
@@ -10,6 +11,14 @@ public class Notification {
 
     public String getStatus() {
         return status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setStatus(String status) {
@@ -56,7 +65,8 @@ public class Notification {
         this.profileImg = profileImg;
     }
 
-    public Notification(String sender, String requestedBook, String proposedBook, String time, int profileImg,String status) {
+    public Notification(int id,String sender, String requestedBook, String proposedBook, String time, int profileImg,String status) {
+        this.id=id;
         this.sender = sender;
         this.requestedBook = requestedBook;
         this.proposedBook = proposedBook;

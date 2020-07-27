@@ -26,9 +26,9 @@ MyActivityAdapter myActivityAdapter;
         myActivity=findViewById(R.id.myActivityRecyclerView);
 
         List<Notification> notifications=new ArrayList<>();
-        notifications.add(new Notification("Rajesh Hamal","Muna Madan","Catch 22","1 hours ago",R.drawable.book3,"completed"));
-        notifications.add(new Notification("Paul Walker","Catch 22","Hamlet","3 hours ago",R.drawable.catch22,"pending"));
-        notifications.add(new Notification("Axl Roses","Siris ko Phool","Seto Bagh","3 hours ago",R.drawable.book6,"completed"));
+//        notifications.add(new Notification("Rajesh Hamal","Muna Madan","Catch 22","1 hours ago",R.drawable.book3,"completed"));
+//        notifications.add(new Notification("Paul Walker","Catch 22","Hamlet","3 hours ago",R.drawable.catch22,"pending"));
+//        notifications.add(new Notification("Axl Roses","Siris ko Phool","Seto Bagh","3 hours ago",R.drawable.book6,"completed"));
 
         myActivityAdapter=new MyActivityAdapter(notifications,this);
         myActivity.setAdapter(myActivityAdapter);
