@@ -27,15 +27,15 @@ import static com.example.bookexchange1.URL.URL.userAPI;
 public class BookBLL {
     boolean isSuccess;
 
-    public boolean add (String name, String author,String description, MultipartBody.Part image,String condition,int id)
+    public boolean add (String name, String author,String description,String condition,int id)
     {
         RequestBody reqName=RequestBody.create(MediaType.parse("text/plain"), name);
         RequestBody reqAuthor=RequestBody.create(MediaType.parse("text/plain"), author);
         RequestBody reqDescription=RequestBody.create(MediaType.parse("text/plain"), description);
         RequestBody reqCondition=RequestBody.create(MediaType.parse("text/plain"), condition);
         RequestBody reqId=RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id));
-        Call<ResponseBody> call=bookAPI.add(reqName,reqAuthor,reqDescription,image,reqCondition,reqId);
-        StrictModeClass.StrictMode();
+        Call<ResponseBody> call=bookAPI.add(reqName,reqAuthor,reqDescription,reqCondition,reqId);
+//        StrictModeClass.StrictMode();
         try {
             Response<ResponseBody> response=call.execute();
 

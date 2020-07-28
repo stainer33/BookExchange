@@ -25,7 +25,7 @@ public interface BookAPI {
     Call<ResponseBody> add(@Part("name") RequestBody name,
                            @Part("author")RequestBody author,
                            @Part("description") RequestBody description,
-                            @Part MultipartBody.Part image,
+
                            @Part("condition")RequestBody condition,
                            @Part("belongs_to")RequestBody userId);
 
