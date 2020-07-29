@@ -25,82 +25,33 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_margin="10sp"
-                android:src="@drawable/munamadan"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:scaleType="fitXY"
                 android:id="@+id/profileImageView"/>
 
+
             <TextView
-                android:id="@+id/txtSender"
+                android:id="@+id/txtAction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:layout_marginHorizontal="10dp"
-                android:text="You exchange"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
                 app:layout_constraintStart_toEndOf="@+id/profileImageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Muna madan"
-                android:textStyle="bold"
-                android:layout_marginVertical="10dp"
-                android:layout_marginLeft="5dp"
-                app:layout_constraintStart_toEndOf="@+id/txtSender"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/txtProposedBook"/>
-
-
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="with"
-                app:layout_constraintStart_toEndOf="@+id/txtProposedBook"
-                app:layout_constraintTop_toTopOf="@+id/txtProposedBook" />
-
-            <TextView
-                android:id="@+id/txtRequestedBook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_marginHorizontal="5dp"
-                android:text="John Cena"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:text="with"
-                app:layout_constraintStart_toEndOf="@+id/profileImageView"
-                app:layout_constraintTop_toBottomOf="@+id/txtSender" />
-            <TextView
-                android:id="@+id/txtReceiver"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rajesh Hamal"
-                android:layout_marginHorizontal="5dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/textView1"
-                app:layout_constraintTop_toTopOf="@+id/textView1" />
 
             <TextView
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10:20"
-                android:textSize="12sp"
-                android:layout_marginHorizontal="10sp"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/profileImageView"
-                app:layout_constraintTop_toBottomOf="@+id/textView1" />
-
+                app:layout_constraintTop_toBottomOf="@+id/txtAction" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

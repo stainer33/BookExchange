@@ -31,96 +31,42 @@
                 android:id="@+id/profileImageView"/>
 
             <TextView
-                android:id="@+id/txtSender"
+                android:id="@+id/txtAction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:layout_marginHorizontal="10dp"
-                android:text="You requested"
+                android:text="dd"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
                 app:layout_constraintStart_toEndOf="@+id/profileImageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rajesh Hamal"
-                android:textStyle="bold"
-                android:layout_marginVertical="10dp"
-                android:layout_marginLeft="5dp"
-                app:layout_constraintStart_toEndOf="@+id/txtSender"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/txtReceiver"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="to exchange"
-                app:layout_constraintStart_toEndOf="@+id/txtReceiver"
-                app:layout_constraintTop_toTopOf="@+id/txtReceiver" />
-
-            <TextView
-                android:id="@+id/txtRequestedBook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hemlet"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                app:layout_constraintStart_toEndOf="@+id/profileImageView"
-                app:layout_constraintTop_toBottomOf="@+id/txtSender" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="with"
-                app:layout_constraintStart_toEndOf="@+id/txtRequestedBook"
-                app:layout_constraintTop_toTopOf="@+id/txtRequestedBook" />
-
-            <TextView
-                android:id="@+id/txtProposedBook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="Muna Madan"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="dddd"
+                android:layout_marginHorizontal="10dp"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/txtRequestedBook"
-                app:layout_constraintTop_toBottomOf="@+id/txtRequestedBook" />
+                app:layout_constraintStart_toEndOf="@+id/profileImageView"
+                app:layout_constraintTop_toBottomOf="@+id/txtAction" />
 
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#32CD32"
-                android:padding="3sp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_edit"
-                android:textColor="#FFFFFF"
-                app:layout_constraintStart_toStartOf="@+id/txtTime"
-                app:layout_constraintTop_toBottomOf="@+id/txtTime" />
 
             <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="#FF0000"
                 android:layout_marginTop="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="#FF0000"
                 android:padding="3dp"
                 android:src="@drawable/ic_delete"
                 android:textColor="#FFFFFF"
-                app:layout_constraintStart_toEndOf="@+id/btnEdit"
+
+                app:layout_constraintStart_toEndOf="@+id/profileImageView"
                 app:layout_constraintTop_toBottomOf="@+id/txtTime" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

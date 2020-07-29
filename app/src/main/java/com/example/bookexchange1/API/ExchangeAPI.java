@@ -16,7 +16,7 @@ public interface ExchangeAPI {
     @GET("exchange/requestedby/{id}")
     Call<ResponseBody> myActivity(@Path("id") int id);
 
-    @GET("exchange/requestedby/{id}")
+    @GET("exchange/requestedto/{id}")
     Call<ResponseBody> notification(@Path("id") int id);
 
 }

@@ -32,6 +32,10 @@ import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.R;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import android.content.pm.PackageManager;
 import StrictMode.StrictModeClass;
 import okhttp3.MediaType;
@@ -85,18 +89,47 @@ public class AddBookDialog extends AppCompatDialogFragment {
         btnAddBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = new File(imagePath);
+              //  File file = new File(imagePath);
+                Uri imageUri = Uri.parse("http://10.0.2.2:8000/storage/users/July2020/NQjnlJNQXNCcrtcZfl2X.jpg");
+
+                File file=new File(imageUri.getPath());
+                Toast.makeText(getActivity(), imageUri.getPath(), Toast.LENGTH_SHORT).show();
                 RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
                 MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
-                BookBLL bookBLL=new BookBLL();
-              boolean res=  bookBLL.add(etBookName.getText().toString(),etAuthorName.getText().toString(),etDes.getText().toString(),body,conditionSpinner.getSelectedItem().toString(), User.id);
-              if(res){
-              Toast.makeText(getActivity(), "Book added successfully", Toast.LENGTH_SHORT).show();}
-              else
-              {
-                  Toast.makeText(getActivity(), "Can't add book", Toast.LENGTH_SHORT).show();
-              }
+//                BookBLL bookBLL=new BookBLL();
+//              boolean res=  bookBLL.add(etBookName.getText().toString(),etAuthorName.getText().toString(),etDes.getText().toString(),body,conditionSpinner.getSelectedItem().toString(), User.id);
+//              if(res){
+//              Toast.makeText(getActivity(), "Book added successfully", Toast.LENGTH_SHORT).show();}
+//              else
+//              {
+//                  Toast.makeText(getActivity(), "Can't add book", Toast.LENGTH_SHORT).show();
+//              }
+                RequestBody reqName=RequestBody.create(MediaType.parse("text/plain"), "a");
+                RequestBody reqAuthor=RequestBody.create(MediaType.parse("text/plain"), "a");
+                RequestBody reqDescription=RequestBody.create(MediaType.parse("text/plain"), "a");
+                RequestBody reqCondition=RequestBody.create(MediaType.parse("text/plain"), "a");
+                RequestBody reqId=RequestBody.create(MediaType.parse("text/plain"), String.valueOf(22));
+                Call<ResponseBody> call=bookAPI.add(reqName,reqAuthor,reqDescription,body,reqCondition,reqId);
+                StrictModeClass.StrictMode();
+                try {
+                    Response<ResponseBody> response=call.execute();
+
+                    if(response.code()==200)
+                    {
+                        Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return builder.create();

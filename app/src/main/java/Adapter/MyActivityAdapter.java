@@ -1,6 +1,7 @@
 package Adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookexchange1.Model.Notification;
 import com.example.bookexchange1.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -40,17 +42,19 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         else {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate((R.layout.request_layout2),parent, false);
-            return new PendingView(view);
+            return new CompletedView(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == VIEW_TYPE_ONE) {
-            ((PendingView)holder).txtReceiver.setText(notifications.get(position).getSender());
-            ((PendingView)holder).profileImageView.setBackgroundResource(notifications.get(position).getProfileImg());
-            ((PendingView)holder).txtRequestedBook.setText(notifications.get(position).getRequestedBook());
-            ((PendingView)holder).txtProposedBook.setText(notifications.get(position).getProposedBook());
+            Picasso.with(context)
+                    .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
+
+                    .into(  ((PendingView)holder).profileImageView);
+            String txtAction = "<b>" + notifications.get(position).getSender() + "</b> " +" requested you to exchange " +"<b>" + notifications.get(position).getRequestedBook() + "</b> " +" with "+"<b>" + notifications.get(position).getProposedBook() + "</b> ";
+            ((PendingView)holder).txtAction.setText(Html.fromHtml(txtAction));
             ((PendingView)holder).txtTime.setText(notifications.get(position).getTime());
             ((PendingView)holder).btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -65,6 +69,15 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 }
             });
         }
+        else
+        {  Picasso.with(context)
+                .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
+
+                .into(  ((CompletedView)holder).profileImageView);
+            String txtAction = "<b>" + notifications.get(position).getSender() + "</b> " +" requested you to exchange " +"<b>" + notifications.get(position).getRequestedBook() + "</b> " +" with "+"<b>" + notifications.get(position).getProposedBook() + "</b> ";
+            ((CompletedView)holder).txtAction.setText(Html.fromHtml(txtAction));
+            ((CompletedView)holder).txtTime.setText(notifications.get(position).getTime());
+        }
 
     }
 
@@ -74,7 +87,7 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
     @Override
     public int getItemViewType(int position){
-        if (notifications.get(position).getStatus().equals("pending")) {
+        if (notifications.get(position).getStatus().equals("requested")) {
             return VIEW_TYPE_ONE;
 
         } else {
@@ -83,30 +96,25 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
     class PendingView extends RecyclerView.ViewHolder{
         ImageView profileImageView;
-        TextView txtReceiver, txtRequestedBook,txtProposedBook,txtTime;
+        TextView txtAction, txtTime;
         ImageButton btnEdit, btnDelete;
         public PendingView(@NonNull View itemView) {
             super(itemView);
 
-            btnEdit=itemView.findViewById(R.id.btnEdit);
             btnDelete=itemView.findViewById(R.id.btnDelete);
             profileImageView=itemView.findViewById(R.id.profileImageView);
-            txtReceiver=itemView.findViewById(R.id.txtReceiver);
-            txtRequestedBook=itemView.findViewById(R.id.txtRequestedBook);
-            txtProposedBook=itemView.findViewById(R.id.txtProposedBook);
+            txtAction=itemView.findViewById(R.id.txtAction);
             txtTime=itemView.findViewById(R.id.txtTime);
         }
     }
     class CompletedView extends  RecyclerView.ViewHolder{
         ImageView profileImageView;
-        TextView txtReceiver, txtRequestedBook,txtProposedBook,txtTime;
+        TextView txtAction,txtTime;
         public CompletedView(@NonNull View itemView) {
             super(itemView);
 
             profileImageView=itemView.findViewById(R.id.profileImageView);
-            txtReceiver=itemView.findViewById(R.id.txtReceiver);
-            txtRequestedBook=itemView.findViewById(R.id.txtRequestedBook);
-            txtProposedBook=itemView.findViewById(R.id.txtProposedBook);
+            txtAction=itemView.findViewById(R.id.txtAction);
             txtTime=itemView.findViewById(R.id.txtTime);
         }
     }
