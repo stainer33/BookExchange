@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,5 +137,25 @@ public class BookBLL {
 
         }
         return books;
+    }
+    public boolean delete(int id)
+    {
+        Call<ResponseBody> call =bookAPI.delete(id);
+        StrictModeClass.StrictMode();
+        try{
+            Response<ResponseBody> response =call.execute();
+            if(response.code()==200)
+            {
+                isSuccess=true;
+
+            }
+            else
+            {
+                isSuccess=false;
+            }}
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isSuccess;
     }
 }

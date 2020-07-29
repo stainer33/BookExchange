@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:layout_marginHorizontal="10dp"
+                android:maxWidth="300dp"
                 android:singleLine="false"
                 android:scrollHorizontally="false"
                 app:layout_constraintStart_toEndOf="@+id/profileImageView"

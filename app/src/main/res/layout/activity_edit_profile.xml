@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="#FFFF"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="5dp">
+
+
+    <TextView
+        android:text="Edit Profile"
+        android:padding="10dp"
+        android:textSize="35dp"
+        android:textColor="#000"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/cantora_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProfile"
+        android:layout_gravity="center"
+
+        android:layout_marginLeft="15dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp" />
+    <TextView
+        android:id="@+id/txtName"
+
+        android:padding="10dp"
+        android:textSize="30dp"
+        android:textColor="#000"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/cantora_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+
+    <EditText
+
+        android:id="@+id/txtAddress"
+        android:textColor="#000"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:paddingTop="30dp"
+        android:drawableLeft="@drawable/location"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Address"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+
+        android:id="@+id/txtPhone"
+        android:textColor="#000"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:drawableLeft="@drawable/phone"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp" />
+    <EditText
+
+        android:id="@+id/txtEmail"
+        android:textColor="#000"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp" />
+    <EditText
+        android:id="@+id/etPasswordP"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:fontFamily="@font/cantora_one"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:drawableLeft="@drawable/lock"
+        android:drawablePadding="8dp"
+        android:layout_gravity="center_vertical"
+        android:hint="Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp" />
+
+
+    <Button
+        android:id="@+id/btnEditProfile"
+        android:text="Edit Profile"
+        android:textColor="#FFFF"
+        android:background="#000080"
+        android:fontFamily="@font/cantora_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginVertical="30dp"
+        android:layout_gravity="center"/>
+
+
+</LinearLayout>

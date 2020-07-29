@@ -2,6 +2,7 @@ package Adapter;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,10 @@ import com.example.bookexchange1.Model.Notification;
 import com.example.bookexchange1.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<Notification>notifications;
@@ -53,30 +57,44 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
 
                     .into(  ((PendingView)holder).profileImageView);
-            String txtAction = "<b>" + notifications.get(position).getSender() + "</b> " +" requested you to exchange " +"<b>" + notifications.get(position).getRequestedBook() + "</b> " +" with "+"<b>" + notifications.get(position).getProposedBook() + "</b> ";
+            String txtAction = "You requested <b>" + notifications.get(position).getSender() + "</b> to exchange <b>" + notifications.get(position).getRequestedBook() + "</b>  with <b>" + notifications.get(position).getProposedBook() + "</b> ";
             ((PendingView)holder).txtAction.setText(Html.fromHtml(txtAction));
-            ((PendingView)holder).txtTime.setText(notifications.get(position).getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+            try {
+                long time = sdf.parse(notifications.get(position).getTime()).getTime();
+                long now = System.currentTimeMillis();
+                CharSequence ago = DateUtils.getRelativeTimeSpanString(time, now, DateUtils.MINUTE_IN_MILLIS);
+                ((PendingView)holder).txtTime.setText(ago);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             ((PendingView)holder).btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
                 }
             });
-            ((PendingView)holder).btnEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "Edit", Toast.LENGTH_SHORT).show();
-                }
-            });
+
         }
         else
         {  Picasso.with(context)
                 .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
 
                 .into(  ((CompletedView)holder).profileImageView);
-            String txtAction = "<b>" + notifications.get(position).getSender() + "</b> " +" requested you to exchange " +"<b>" + notifications.get(position).getRequestedBook() + "</b> " +" with "+"<b>" + notifications.get(position).getProposedBook() + "</b> ";
+            String txtAction = "You have exchnage <b>" + notifications.get(position).getRequestedBook() + "</b> with <b>" + notifications.get(position).getProposedBook() + "</b> " +" with <b>"+notifications.get(position).getSender() + "</b> "  ;
             ((CompletedView)holder).txtAction.setText(Html.fromHtml(txtAction));
-            ((CompletedView)holder).txtTime.setText(notifications.get(position).getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+            try {
+                long time = sdf.parse(notifications.get(position).getTime()).getTime();
+                long now = System.currentTimeMillis();
+                CharSequence ago = DateUtils.getRelativeTimeSpanString(time, now, DateUtils.MINUTE_IN_MILLIS);
+                ((CompletedView)holder).txtTime.setText(ago);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
 
     }

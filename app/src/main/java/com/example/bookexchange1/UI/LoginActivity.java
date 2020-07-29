@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +38,8 @@ public class LoginActivity extends AppCompatActivity {
  EditText etEmail, etPassword;
  TextInputLayout email_input_layout,password_input_layout;
  Button btnLogin;
- TextView linkRegister;
+ ImageButton btnPassword;
+ TextView linkRegister; boolean check=true;
  UserBLL userBLL= new UserBLL();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         etEmail=findViewById(R.id.etEmail);
         etPassword=findViewById(R.id.etPassword);
         btnLogin=findViewById(R.id.btnLogin);
+        btnPassword=findViewById(R.id.btnPassword);
         linkRegister=findViewById(R.id.link_register);
         email_input_layout=findViewById(R.id.email_input_layout);
         password_input_layout=findViewById(R.id.password_input_layout);
@@ -79,6 +84,21 @@ public class LoginActivity extends AppCompatActivity {
                 if(hasFocus)
                 {
                     password_input_layout.setErrorEnabled(false);
+                }
+            }
+        });
+        btnPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(check)
+                {
+                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                    check=false;
+                }
+                else
+                {
+                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    check=true;
                 }
             }
         });

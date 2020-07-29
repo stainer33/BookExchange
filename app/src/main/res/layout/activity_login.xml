@@ -37,6 +37,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_input_layout"
             android:layout_width="match_parent"
@@ -47,8 +51,19 @@
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"></EditText>
         </com.google.android.material.textfield.TextInputLayout>
+        <ImageButton
+            android:id="@+id/btnPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/eye"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="25dp"
+            android:text="Button"/>
+        </RelativeLayout>
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
