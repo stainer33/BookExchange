@@ -66,4 +66,23 @@ public class AddBookTest {
 
 
     }
+    @Test
+    public void GetMyBook(){
+        List<Book> myList = new ArrayList<>();
+        User.t_email="admin@admin.com";
+        boolean list;
+
+        BookBLL bookBLL = new BookBLL();
+        myList = bookBLL.getMyBook();
+        int size = myList.size();
+
+        if (size>0){
+            list = true;
+        }
+        else {
+            list = false;
+        }
+        assertEquals(true, list);
+
+    }
 }
