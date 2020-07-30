@@ -1,11 +1,7 @@
 package com.example.bookexchange1.BLL;
 
-import android.widget.Toast;
-
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.Model.User;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,14 +11,12 @@ import java.util.List;
 
 import StrictMode.StrictModeClass;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
 import static com.example.bookexchange1.URL.URL.bookAPI;
-import static com.example.bookexchange1.URL.URL.userAPI;
 
 public class BookBLL {
     boolean isSuccess;
@@ -60,7 +54,7 @@ public class BookBLL {
     {
         List<Book>books=new ArrayList<>();
         Call<ResponseBody> call =bookAPI.getAll();
-        StrictModeClass.StrictMode();
+//        StrictModeClass.StrictMode();
         try{
             Response<ResponseBody> response =call.execute();
             JSONObject jobj = new JSONObject((response.body().string()));
@@ -79,8 +73,9 @@ public class BookBLL {
                 String author =jsonObject.getString("author");
                 String owner =object.getString("name");
                 String email=object.getString("email");
-                String path =jsonObject.getString("image");
-                String image=path.substring(path.lastIndexOf("/")+1);
+//                String path =jsonObject.getString("image");
+                String image = "image";
+//                String image=path.substring(path.lastIndexOf("/")+1);
                 String des=jsonObject.getString("description");
 
                 if(!User.t_email.equals(email)){

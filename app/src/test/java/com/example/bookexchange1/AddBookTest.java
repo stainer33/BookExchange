@@ -1,30 +1,16 @@
 package com.example.bookexchange1;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
-
-import androidx.loader.content.CursorLoader;
-
 import com.example.bookexchange1.BLL.BookBLL;
-import com.example.bookexchange1.BLL.UserBLL;
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.Model.User;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.BuildConfig;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.*;
+
 
 public class AddBookTest {
 
@@ -58,4 +44,26 @@ public class AddBookTest {
 //        cursor.close();
 //        return result;
 //    }
+
+    @Test
+    public void GetBookList() {
+        List<Book> myList = new ArrayList<>();
+        User.t_email="admin@admin.com";
+        boolean list;
+
+        BookBLL bookBLL = new BookBLL();
+        myList = bookBLL.getAllBook();
+        int size = myList.size();
+
+        if (size>0){
+            list = true;
+        }
+        else {
+            list = false;
+        }
+        assertEquals(true, list);
+
+
+
+    }
 }
