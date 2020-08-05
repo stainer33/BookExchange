@@ -93,10 +93,12 @@ public class LoginActivity extends AppCompatActivity {
                 if(check)
                 {
                     etPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                    btnPassword.setImageResource(R.drawable.hide);
                     check=false;
                 }
                 else
                 {
+                    btnPassword.setImageResource(R.drawable.eye);
                     etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     check=true;
                 }
