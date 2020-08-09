@@ -1,34 +1,43 @@
 package com.example.bookexchange1.BLL;
 
+import android.widget.Toast;
+
 import com.example.bookexchange1.Model.Book;
+import com.example.bookexchange1.Model.Owner;
 import com.example.bookexchange1.Model.User;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import StrictMode.StrictModeClass;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
 import static com.example.bookexchange1.URL.URL.bookAPI;
+import static com.example.bookexchange1.URL.URL.userAPI;
 
 public class BookBLL {
     boolean isSuccess;
 
-    public boolean add (String name, String author,String description,String condition,int id)
+    public boolean add (String name, String author,String description, MultipartBody.Part image,String condition,int id)
     {
         RequestBody reqName=RequestBody.create(MediaType.parse("text/plain"), name);
         RequestBody reqAuthor=RequestBody.create(MediaType.parse("text/plain"), author);
         RequestBody reqDescription=RequestBody.create(MediaType.parse("text/plain"), description);
         RequestBody reqCondition=RequestBody.create(MediaType.parse("text/plain"), condition);
         RequestBody reqId=RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id));
-        Call<ResponseBody> call=bookAPI.add(reqName,reqAuthor,reqDescription,reqCondition,reqId);
-//        StrictModeClass.StrictMode();
+        Call<ResponseBody> call=bookAPI.add(reqName,reqAuthor,reqDescription,image,reqCondition,reqId);
+        StrictModeClass.StrictMode();
         try {
             Response<ResponseBody> response=call.execute();
 
@@ -53,7 +62,7 @@ public class BookBLL {
     {
         List<Book>books=new ArrayList<>();
         Call<ResponseBody> call =bookAPI.getAll();
-//        StrictModeClass.StrictMode();
+        StrictModeClass.StrictMode();
         try{
             Response<ResponseBody> response =call.execute();
             JSONObject jobj = new JSONObject((response.body().string()));
@@ -72,13 +81,13 @@ public class BookBLL {
                 String author =jsonObject.getString("author");
                 String owner =object.getString("name");
                 String email=object.getString("email");
-//                String path =jsonObject.getString("image");
-                String image = "image";
-//                String image=path.substring(path.lastIndexOf("/")+1);
+                int userId=object.getInt("id");
+                String path =jsonObject.getString("image");
+                String image=path.substring(path.lastIndexOf("/")+1);
                 String des=jsonObject.getString("description");
 
                 if(!User.t_email.equals(email)){
-                    books.add(new Book(id,name,author,image,owner,des));}
+                    books.add(new Book(id,name,author,image,new Owner(userId,owner),des));}
                 //names.add(jsonObject.getString("name"));
             }
         }
@@ -94,7 +103,7 @@ public class BookBLL {
     {
         List<Book>books=new ArrayList<>();;
         Call<ResponseBody> call =bookAPI.getMyBooks();
-//        StrictModeClass.StrictMode();
+        StrictModeClass.StrictMode();
         try{
             Response<ResponseBody> response =call.execute();
             JSONObject jobj = new JSONObject((response.body().string()));
@@ -112,13 +121,13 @@ public class BookBLL {
                 String author =jsonObject.getString("author");
                 String owner =object.getString("name");
                 String email=object.getString("email");
-//                String path =jsonObject.getString("image");
-//                String image=path.substring(path.lastIndexOf("/")+1);
-                String image = "image";
+                int userId=object.getInt("id");
+                String path =jsonObject.getString("image");
+                String image=path.substring(path.lastIndexOf("/")+1);
                 String des=jsonObject.getString("description");
 
                 if(User.t_email.equals(email)){
-                    books.add(new Book(id,name,author,image,owner,des));}
+                    books.add(new Book(id,name,author,image,new Owner(userId,owner),des));}
                 //names.add(jsonObject.getString("name"));
             }
         }
@@ -128,5 +137,25 @@ public class BookBLL {
 
         }
         return books;
+    }
+    public boolean delete(int id)
+    {
+        Call<ResponseBody> call =bookAPI.delete(id);
+        StrictModeClass.StrictMode();
+        try{
+            Response<ResponseBody> response =call.execute();
+            if(response.code()==200)
+            {
+                isSuccess=true;
+
+            }
+            else
+            {
+                isSuccess=false;
+            }}
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isSuccess;
     }
 }

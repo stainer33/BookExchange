@@ -53,8 +53,6 @@ public class UserBLL {
       StrictModeClass.StrictMode();
                 try {
                     Response<ResponseBody>   response = call.execute();
-                    final Response<ResponseBody> finalResponse = response;
-
 
                   if(response.code()==200)
                   {
@@ -97,5 +95,22 @@ public class UserBLL {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public boolean update(int id, String name, String email, String address, String phone)
+    {
+        Call<ResponseBody> call=userAPI.update(id,name,email,address,phone);
+        StrictModeClass.StrictMode();
+        try {
+            Response<ResponseBody> response = call.execute();
+            if (response.code() == 200) {
+                isSuccess=true;
+            }
+            else {isSuccess=false;}
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isSuccess;
     }
 }

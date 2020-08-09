@@ -4,12 +4,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookexchange1.AddBookDialog;
+import com.example.bookexchange1.BLL.BookBLL;
+import com.example.bookexchange1.EditBookDialog;
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.R;
 import com.squareup.picasso.Picasso;
@@ -35,20 +42,47 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Book book=books.get(position);
         holder.bookName.setText(book.getName());
         Picasso.with(context)
-                .load("http://10.0.2.2:8000/storage/users/July2020/"+book.getImage())
+                .load("http://10.0.2.2:8000/storage/books/July2020/"+book.getImage())
 
                 .into(holder.bookImg);
     //    holder.bookImg.setBackgroundResource(book.getImage());
         holder.authorName.setText(book.getAuthor());
-
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BookBLL bookBLL=new BookBLL();
+               boolean res = bookBLL.delete(book.getId());
+               if(res)
+               {
+                   books.remove(position);
+                   notifyItemRemoved(position);
+                   notifyItemRangeChanged(position, books.size());
+                   Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+               }
+               else
+               {
+                   Toast.makeText(context, "Couldn't delete", Toast.LENGTH_SHORT).show();
+               }
+            }
+        });
     }
 
 
-
+    public void openDialog()
+    {
+        EditBookDialog editBookDialog= new EditBookDialog();
+        editBookDialog.show(((AppCompatActivity)context).getSupportFragmentManager(),"tag");
+    }
     @Override
     public int getItemCount() {
         return books.size();
@@ -63,11 +97,14 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
     {
         ImageView bookImg;
         TextView bookName, authorName;
+         ImageButton btnEdit, btnDelete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             bookImg=itemView.findViewById(R.id.bookImg);
             bookName=itemView.findViewById(R.id.bookName);
             authorName=itemView.findViewById(R.id.authorName);
+            btnEdit=itemView.findViewById(R.id.btnEdit);
+            btnDelete=itemView.findViewById(R.id.btnDelete);
         }
         }
 }

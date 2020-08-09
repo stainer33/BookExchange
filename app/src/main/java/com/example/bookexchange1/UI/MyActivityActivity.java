@@ -5,19 +5,32 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.example.bookexchange1.BLL.ExchangeBLL;
 import com.example.bookexchange1.Model.Notification;
+import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Adapter.MyActivityAdapter;
 import Adapter.NotificationAdapter;
+import StrictMode.StrictModeClass;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Response;
+
+import static com.example.bookexchange1.URL.URL.exchangeAPI;
 
 public class MyActivityActivity extends AppCompatActivity {
 RecyclerView myActivity;
 MyActivityAdapter myActivityAdapter;
+ExchangeBLL exchangeBLL= new ExchangeBLL();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,17 +39,12 @@ MyActivityAdapter myActivityAdapter;
         myActivity=findViewById(R.id.myActivityRecyclerView);
 
         List<Notification> notifications=new ArrayList<>();
-        notifications.add(new Notification("Rajesh Hamal","Muna Madan","Catch 22","1 hours ago",R.drawable.book3,"completed"));
-        notifications.add(new Notification("Paul Walker","Catch 22","Hamlet","3 hours ago",R.drawable.catch22,"pending"));
-        notifications.add(new Notification("Axl Roses","Siris ko Phool","Seto Bagh","3 hours ago",R.drawable.book6,"completed"));
-
+        notifications=exchangeBLL.myActivity();
         myActivityAdapter=new MyActivityAdapter(notifications,this);
         myActivity.setAdapter(myActivityAdapter);
         myActivity.setLayoutManager(new LinearLayoutManager(this));
 
-//        NotificationAdapter    notificationAdapter=new NotificationAdapter(this,notifications);
-//        myActivity.setAdapter(notificationAdapter);
-//   myActivity.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 }

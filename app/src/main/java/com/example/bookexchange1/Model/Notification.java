@@ -1,15 +1,24 @@
 package com.example.bookexchange1.Model;
 
 public class Notification {
+    private int id;
     private String sender;
     private  String requestedBook;
     private String proposedBook;
     private String time;
-    private int profileImg;
+    private String bookImg;
     private String status;
 
     public String getStatus() {
         return status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setStatus(String status) {
@@ -48,20 +57,21 @@ public class Notification {
         this.time = time;
     }
 
-    public int getProfileImg() {
-        return profileImg;
+    public String getBookImg() {
+        return bookImg;
     }
 
-    public void setProfileImg(int profileImg) {
-        this.profileImg = profileImg;
+    public void setBookImg(String profileImg) {
+        this.bookImg = profileImg;
     }
 
-    public Notification(String sender, String requestedBook, String proposedBook, String time, int profileImg,String status) {
+    public Notification(int id,String sender, String requestedBook, String proposedBook, String time, String bookImg,String status) {
+        this.id=id;
         this.sender = sender;
         this.requestedBook = requestedBook;
         this.proposedBook = proposedBook;
         this.time = time;
-        this.profileImg = profileImg;
+        this.bookImg = bookImg;
         this.status=status;
     }
 }

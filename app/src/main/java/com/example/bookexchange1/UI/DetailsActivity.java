@@ -13,14 +13,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookexchange1.API.ExchangeAPI;
+import com.example.bookexchange1.BLL.BookBLL;
+import com.example.bookexchange1.BLL.ExchangeBLL;
 import com.example.bookexchange1.Model.Book;
+import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.R;
 import com.squareup.picasso.Picasso;
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity {
     private Spinner bookListSpinner;
     private TextView txtName, txtAuthor,txtDes,txtOwner;
-    private ImageView bookImg; private Button btnExchange;
+    private ImageView bookImg; private Button btnExchange; int bookId;
+    ExchangeBLL exchangeBLL=new ExchangeBLL();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,20 +43,41 @@ public class DetailsActivity extends AppCompatActivity {
         bookImg=findViewById(R.id.bookImg);
         btnExchange=findViewById(R.id.btnExchange);
         Intent intent=getIntent();
-        Book book=(Book)intent.getSerializableExtra("book");
+        final Book book=(Book)intent.getSerializableExtra("book");
        // Toast.makeText(this, "dd"+book.getId(), Toast.LENGTH_SHORT).show();
-        String[] books = {"select a book", "Seto Baagh", "Siris ko phool", "Catch 22", "Lolita", "Hmalet" };
-
+       // String[] books = {"select a book", "Seto Baagh", "Siris ko phool", "Catch 22", "Lolita", "Hmalet" };
+        List<String>books=new ArrayList<>();
+        final List<Integer>ids=new ArrayList<>();
+        BookBLL bookBLL=new BookBLL();
+        List<Book>bookList=bookBLL.getMyBook();
+        for(int i=0;i<bookList.size();i++)
+        {
+            ids.add(bookList.get(i).getId());
+            books.add(bookList.get(i).getName());
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, books);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         bookListSpinner.setAdapter(adapter);
+bookListSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                 bookId= ids.get(position);
+            }
 
-        String  value=bookListSpinner.getSelectedItem().toString();
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
         txtName.setText(book.getName());
         txtAuthor.setText(book.getAuthor());
+        final Integer userId=book.getOwner().getId();
         txtDes.setText(book.getDes());
-        txtOwner.setText("owner: "+book.getOwner());
+
+        txtOwner.setText("owner: "+book.getOwner().getName());
         Picasso.with(this)
                 .load("http://10.0.2.2:8000/storage/books/July2020/"+book.getImage())
 
@@ -55,7 +85,13 @@ public class DetailsActivity extends AppCompatActivity {
 btnExchange.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        Toast.makeText(DetailsActivity.this, "", Toast.LENGTH_SHORT).show();
+        boolean res =exchangeBLL.add(book.getId(),bookId,userId, User.id,"requested");
+        if(res)
+        {Toast.makeText(DetailsActivity.this, "Request send successfully" , Toast.LENGTH_SHORT).show();}
+        else
+        {
+            Toast.makeText(DetailsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
     }
 });
     }

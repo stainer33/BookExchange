@@ -3,13 +3,12 @@ package com.example.bookexchange1;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,50 +26,37 @@ import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 
 import com.example.bookexchange1.BLL.BookBLL;
-import com.example.bookexchange1.Model.Book;
-import com.example.bookexchange1.Model.User;
-import com.example.bookexchange1.R;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
-import android.content.pm.PackageManager;
-import StrictMode.StrictModeClass;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
-import static com.example.bookexchange1.URL.URL.bookAPI;
 
-public class AddBookDialog extends AppCompatDialogFragment {
+public class EditBookDialog extends AppCompatDialogFragment {
     private EditText etBookName, etAuthorName, etDes;
-    private Button btnAddBooks, btnImage;
+    private Button btnEditBook, btnImage;
     private TextView txtImageName;
     private Spinner conditionSpinner;
     private String imagePath;
     private String imageName;
-
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate((R.layout.layout_add_book), null);
+        View view = inflater.inflate((R.layout.layout_edit_book), null);
 
         builder.setView(view)
-                .setTitle("Add Book");
+                .setTitle("Edit Book");
 
         etDes = view.findViewById(R.id.etDescription);
         etAuthorName = view.findViewById(R.id.etAuthorName);
         etBookName = view.findViewById(R.id.etBookName);
-        btnAddBooks = view.findViewById(R.id.btnAddBooks);
+        btnEditBook = view.findViewById(R.id.btnEditBook);
         btnImage = view.findViewById(R.id.btnImage);
         txtImageName = view.findViewById(R.id.txtImageName);
         conditionSpinner = view.findViewById(R.id.Conditionspinner);
@@ -86,29 +72,16 @@ public class AddBookDialog extends AppCompatDialogFragment {
                 BrowseImage();
             }
         });
-        btnAddBooks.setOnClickListener(new View.OnClickListener() {
+        btnEditBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               File file = new File(imagePath);
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-
+               dismiss();
                 BookBLL bookBLL=new BookBLL();
-              boolean res=  bookBLL.add(etBookName.getText().toString(),etAuthorName.getText().toString(),etDes.getText().toString(),body,conditionSpinner.getSelectedItem().toString(), User.id);
-              if(res){
-              Toast.makeText(getActivity(), "Book added successfully", Toast.LENGTH_SHORT).show();
-                  dismiss();}
-              else
-              {
-                  Toast.makeText(getActivity(), "Can't add book", Toast.LENGTH_SHORT).show();
-
-              }
-
             }
         });
+
         return builder.create();
     }
-
     private void BrowseImage() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
