@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookexchange1.BLL.ExchangeBLL;
 import com.example.bookexchange1.Model.Notification;
 import com.example.bookexchange1.R;
 import com.squareup.picasso.Picasso;
@@ -51,7 +52,7 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         if (getItemViewType(position) == VIEW_TYPE_ONE) {
             Picasso.with(context)
                     .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
@@ -72,6 +73,11 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ((PendingView)holder).btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ExchangeBLL exchangeBLL=new ExchangeBLL();
+                    exchangeBLL.delete(notifications.get(position).getId());
+                    notifications.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, notifications.size());
                     Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
                 }
             });

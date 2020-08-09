@@ -2,6 +2,7 @@ package com.example.bookexchange1.API;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -18,5 +19,8 @@ public interface ExchangeAPI {
 
     @GET("exchange/requestedto/{id}")
     Call<ResponseBody> notification(@Path("id") int id);
+
+    @DELETE("exchange/{id}")
+    Call<ResponseBody>delete(@Path("id") Integer id);
 
 }

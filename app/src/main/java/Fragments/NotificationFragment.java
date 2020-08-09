@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookexchange1.BLL.ExchangeBLL;
 import com.example.bookexchange1.Model.Notification;
 import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.R;
@@ -53,44 +54,8 @@ public class NotificationFragment extends Fragment {
         notificationRecyclerView=view.findViewById(R.id.notificationRecyclerView);
 
         List<Notification> notifications=new ArrayList<>();
-        Call<ResponseBody> call =exchangeAPI.notification(User.id);
-        StrictModeClass.StrictMode();
-        try{
-        Response<ResponseBody> response =call.execute();
-        JSONObject jobj = new JSONObject((response.body().string()));
-
-        //  String status = (jobj.getString("message"));
-
-        JSONObject object1 = jobj.getJSONObject("data");
-        JSONArray jsonArray =object1.getJSONArray("data");
-
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject=jsonArray.getJSONObject(i);
-            int id = jsonObject.getInt("id");
-            String status = jsonObject.getString("status");
-            JSONObject bookWanted = jsonObject.getJSONObject("book_wanted");
-            JSONObject bookOffered = jsonObject.getJSONObject("book_offered");
-            JSONObject request = jsonObject.getJSONObject("requested_by");
-            JSONObject bookWantedJSONObject = bookWanted.getJSONObject("data");
-            JSONObject bookOfferedJSONObject = bookOffered.getJSONObject("data");
-            JSONObject requestJSONObject = request.getJSONObject("data");
-            String sender = requestJSONObject.getString("name");
-            String requestedBook=bookWantedJSONObject.getString("name");
-            String proposedBook=bookOfferedJSONObject.getString("name");
-            String bookImg=bookOfferedJSONObject.getString("image");
-            String time = jsonObject.getString("created_at");
-            notifications.add(new Notification(id,sender,requestedBook,proposedBook,time,bookImg,status));
-            }
-        }
-           catch (Exception ex)
-            {
-                ex.printStackTrace();
-                Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-//        notifications.add(new Notification("Rajesh Hamal","Muna Madan","Catch 22","1 hours ago",R.drawable.book3,"completed"));
-//        notifications.add(new Notification("Paul Walker","Catch 22","Hamlet","3 hours ago",R.drawable.catch22,"completed"));
-//        notifications.add(new Notification("Axl Roses","Siris ko Phool","Seto Bagh","3 hours ago",R.drawable.book6,"completed"));
+      ExchangeBLL exchangeBLL = new ExchangeBLL();
+      notifications=exchangeBLL.notification();
 
         notificationAdapter=new NotificationAdapter(getContext(),notifications);
         notificationRecyclerView.setAdapter(notificationAdapter);
