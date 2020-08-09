@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword=findViewById(R.id.etPassword);
         btnLogin=findViewById(R.id.btnLogin);
         btnPassword=findViewById(R.id.btnPassword);
-        linkRegister=findViewById(R.id.link_register);
+        linkRegister=findViewById(R.id.linkRegister);
         email_input_layout=findViewById(R.id.email_input_layout);
         password_input_layout=findViewById(R.id.password_input_layout);
         etEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -107,9 +107,9 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                validation();
                 String email=etEmail.getText().toString();
                 String password =etPassword.getText().toString();
-               validation();
 
           boolean result= userBLL.login(email,password);
 
@@ -125,8 +125,13 @@ public class LoginActivity extends AppCompatActivity {
               Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
           }
 
-
-
+            }
+        });
+        linkRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,Registration.class);
+                startActivity(intent);
             }
         });
 

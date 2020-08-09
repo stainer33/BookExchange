@@ -3,6 +3,7 @@ package com.example.bookexchange1.API;
 import com.example.bookexchange1.Model.User;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -17,9 +18,14 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface UserAPI {
-    @FormUrlEncoded
+
     @POST("register")
-    Call<ResponseBody> signUp(@Field("email")String email, @Field("name")String fullName, @Field("password")String password, @Field("phone")String mobileNo, @Field("address")String address);
+    Call<ResponseBody> signUp(@Part("email")RequestBody email,
+                              @Part("name")RequestBody fullName,
+                              @Field("password")RequestBody password,
+                              @Part("phone")RequestBody mobileNo,
+                              @Part("address") RequestBody address,
+                              @Part MultipartBody.Part image);
 
     @FormUrlEncoded
     @POST("login")

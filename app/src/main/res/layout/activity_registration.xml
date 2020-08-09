@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#D3D3D3"
+    android:background="@drawable/background"
     tools:context=".UI.Registration">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/tvRegister"
         android:layout_width="match_parent"
@@ -16,18 +19,12 @@
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/cantora_one"
         android:gravity="center"
-        android:text="User Registration"
-        android:textColor="#000"
+        android:text="Registration"
+        android:textColor="	#FFFFFF"
         android:textSize="30dp"
         android:textStyle="bold"></TextView>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgProfile"
                 android:layout_width="match_parent"
@@ -107,7 +104,8 @@
                     android:id="@+id/etPassword"
                     android:fontFamily="@font/cantora_one"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></EditText>
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"></EditText>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tvConfirmPassword"
@@ -122,7 +120,8 @@
                     android:id="@+id/etconfirmpassword"
                     android:fontFamily="@font/cantora_one"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></EditText>
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"></EditText>
             </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/btnSignUp"
@@ -131,21 +130,21 @@
                 android:layout_height="wrap_content"
                 android:text="Signup"
                 android:background="@drawable/round"
-                android:textColor="#000"
+                android:textColor="	#FFFFFF"
                 android:textSize="25dp"
                 android:layout_marginHorizontal="30dp"></Button>
             <TextView
+                android:layout_marginVertical="15sp"
                 android:layout_width="match_parent"
                 android:fontFamily="@font/cantora_one"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvhaveAcc"
+                android:id="@+id/linkLogin"
                 android:text="Already Have an Account? Login"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="#000"
-                android:layout_marginBottom="15dp"></TextView>
+                android:textColor="	#FFFFFF"></TextView>
         </LinearLayout>
 
-    </ScrollView>
 
-</LinearLayout>
+
+</ScrollView>

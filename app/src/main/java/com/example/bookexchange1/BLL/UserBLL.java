@@ -14,6 +14,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import StrictMode.StrictModeClass;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -23,10 +26,14 @@ import static com.example.bookexchange1.URL.URL.userAPI;
 public class UserBLL {
     boolean isSuccess;
     User user ;
-    public boolean signUp(String email,String fullName,String password,String mobile,String address) {
+    public boolean signUp(String email,String fullName,String password,String mobile,String address, MultipartBody.Part image) {
+        RequestBody reqName=RequestBody.create(MediaType.parse("text/plain"), fullName);
+        RequestBody reqEmail=RequestBody.create(MediaType.parse("text/plain"), email);
+        RequestBody  reqPassword=RequestBody.create(MediaType.parse("text/plain"), password);
+        RequestBody  reqMobile=RequestBody.create(MediaType.parse("text/plain"), mobile);
+        RequestBody  reqAddress=RequestBody.create(MediaType.parse("text/plain"), address);
 
-
-        Call<ResponseBody> call = userAPI.signUp(email,fullName,password,mobile,address);
+        Call<ResponseBody> call = userAPI.signUp(reqEmail,reqName,reqPassword,reqMobile,reqAddress,image);
         try {
             Response<ResponseBody> response=call.execute();
 

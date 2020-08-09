@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#D3D3D3"
+    android:background="@drawable/background"
     tools:context=".UI.Registration">
 
 
@@ -19,7 +19,7 @@
             android:gravity="center"
             android:text="Login"
             android:fontFamily="@font/cantora_one"
-            android:textColor="#000"
+            android:textColor="	#FFFFFF"
             android:textSize="40dp"
             android:textStyle="bold"
             android:layout_marginHorizontal="20sp"></TextView>
@@ -76,20 +76,20 @@
             android:layout_height="wrap_content"
             android:background="@drawable/round"
             android:text="Login"
-            android:textColor="#000"
+            android:paddingVertical="10dp"
+            android:textColor="	#FFFFFF"
             android:layout_margin="20dp"
             android:textSize="40dp"></Button>
 
         <TextView
             android:fontFamily="@font/cantora_one"
-            android:id="@+id/link_register"
+            android:id="@+id/linkRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="Don't have an Account? Login"
-
-            android:textColor="#000"
+            android:textColor="	#FFFFFF"
             android:textStyle="bold"></TextView>
 
 
