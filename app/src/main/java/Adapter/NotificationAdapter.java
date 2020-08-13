@@ -40,7 +40,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return  new PendingView (view);}
           else {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate((R.layout.request_layout2),parent, false);
+                    .inflate((R.layout.notification_layout2),parent, false);
             return new CompletedView(view);
         }
     }
@@ -50,7 +50,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (getItemViewType(position) == VIEW_TYPE_ONE) {
 
         Picasso.with(context)
-                .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
+                .load(notifications.get(position).getBookImg())
 
                 .into(  ((PendingView)holder).profileImageView);
         String txtAction = "<b>" + notifications.get(position).getSender() + "</b> requested you to exchange <b>" + notifications.get(position).getRequestedBook() + "</b>  with <b>" + notifications.get(position).getProposedBook() + "</b> ";
@@ -68,10 +68,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         else
         {
             Picasso.with(context)
-                    .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
+                    .load(notifications.get(position).getBookImg())
 
                     .into(  ((CompletedView)holder).profileImageView);
-            String txtAction = "<b>" + notifications.get(position).getSender() + "</b>  has exchange <b>" + notifications.get(position).getRequestedBook() + "</b>  with <b>" + notifications.get(position).getProposedBook() + "</b> with you";
+            String txtAction = "<b>" + notifications.get(position).getSender() + "</b>  has accepted request to exchange <b>" + notifications.get(position).getRequestedBook() + "</b>  with <b>" + notifications.get(position).getProposedBook() + "</b> with you";
             ((CompletedView)holder).txtAction.setText(Html.fromHtml(txtAction));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
             sdf.setTimeZone(TimeZone.getTimeZone("GMT"));

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.bookexchange1.BLL.UserBLL;
 import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.R;
+import com.example.bookexchange1.UI.EditProfileActivity;
 import com.example.bookexchange1.UI.MyActivityActivity;
 import com.squareup.picasso.Picasso;
 
@@ -52,6 +53,13 @@ ImageView imgProfile;
                 startActivity(intent);
             }
         });
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         UserBLL userBLL=new UserBLL();
         User user=userBLL.profile();
@@ -60,8 +68,9 @@ ImageView imgProfile;
         txtAddress.setText(user.getAddress());
         txtPhone.setText(user.getMobileNo());
         txtEmail.setText(user.getEmail());
+
         Picasso.with(getActivity())
-                .load("http://10.0.2.2:8000/storage/users/July2020/"+user.getProfileImg())
+                .load(user.getProfileImg())
 
                 .into(imgProfile);
         return view;

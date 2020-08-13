@@ -28,7 +28,8 @@ public interface BookAPI {
                            @Part("description") RequestBody description,
                             @Part MultipartBody.Part image,
                            @Part("condition")RequestBody condition,
-                           @Part("belongs_to")RequestBody userId);
+                           @Part("belongs_to")RequestBody userId,
+                            @Part ("status")RequestBody status);
 
     @GET("book")
     Call<ResponseBody> getAll();

@@ -29,14 +29,16 @@ import static com.example.bookexchange1.URL.URL.userAPI;
 public class BookBLL {
     boolean isSuccess;
 
-    public boolean add (String name, String author,String description, MultipartBody.Part image,String condition,int id)
+    public boolean add (String name, String author,String description, MultipartBody.Part image,String condition,int id,String status)
     {
         RequestBody reqName=RequestBody.create(MediaType.parse("text/plain"), name);
         RequestBody reqAuthor=RequestBody.create(MediaType.parse("text/plain"), author);
         RequestBody reqDescription=RequestBody.create(MediaType.parse("text/plain"), description);
         RequestBody reqCondition=RequestBody.create(MediaType.parse("text/plain"), condition);
         RequestBody reqId=RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id));
-        Call<ResponseBody> call=bookAPI.add(reqName,reqAuthor,reqDescription,image,reqCondition,reqId);
+        RequestBody reqStatus=RequestBody.create(MediaType.parse("text/plain"), String.valueOf(status));
+
+        Call<ResponseBody> call=bookAPI.add(reqName,reqAuthor,reqDescription,image,reqCondition,reqId,reqStatus);
         StrictModeClass.StrictMode();
         try {
             Response<ResponseBody> response=call.execute();
@@ -82,8 +84,7 @@ public class BookBLL {
                 String owner =object.getString("name");
                 String email=object.getString("email");
                 int userId=object.getInt("id");
-                String path =jsonObject.getString("image");
-                String image=path.substring(path.lastIndexOf("/")+1);
+                String image =jsonObject.getString("image");
                 String des=jsonObject.getString("description");
 
                 if(!User.t_email.equals(email)){
@@ -122,8 +123,8 @@ public class BookBLL {
                 String owner =object.getString("name");
                 String email=object.getString("email");
                 int userId=object.getInt("id");
-                String path =jsonObject.getString("image");
-                String image=path.substring(path.lastIndexOf("/")+1);
+                String image =jsonObject.getString("image");
+
                 String des=jsonObject.getString("description");
 
                 if(User.t_email.equals(email)){

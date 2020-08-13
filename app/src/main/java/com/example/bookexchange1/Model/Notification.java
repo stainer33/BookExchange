@@ -3,12 +3,12 @@ package com.example.bookexchange1.Model;
 public class Notification {
     private int id;
     private String sender;
-    private  String requestedBook;
+    private String requestedBook;
     private String proposedBook;
     private String time;
     private String bookImg;
     private String status;
-
+    private int senderId;
     public String getStatus() {
         return status;
     }
@@ -29,7 +29,7 @@ public class Notification {
         return sender;
     }
 
-    public void setSender(String sender) {
+    public void setSender(String  sender) {
         this.sender = sender;
     }
 
@@ -65,13 +65,25 @@ public class Notification {
         this.bookImg = profileImg;
     }
 
-    public Notification(int id,String sender, String requestedBook, String proposedBook, String time, String bookImg,String status) {
-        this.id=id;
+    public int getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
+    }
+
+    public Notification(int id, String sender, String requestedBook, String proposedBook, String time, String bookImg, String status, int senderId) {
+        this.id = id;
         this.sender = sender;
         this.requestedBook = requestedBook;
         this.proposedBook = proposedBook;
         this.time = time;
         this.bookImg = bookImg;
-        this.status=status;
+        this.status = status;
+        this.senderId = senderId;
     }
+
 }
+
+

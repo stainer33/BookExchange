@@ -34,6 +34,7 @@ public class UserBLL {
         RequestBody  reqAddress=RequestBody.create(MediaType.parse("text/plain"), address);
 
         Call<ResponseBody> call = userAPI.signUp(reqEmail,reqName,reqPassword,reqMobile,reqAddress,image);
+        StrictModeClass.StrictMode();
         try {
             Response<ResponseBody> response=call.execute();
 
@@ -92,8 +93,7 @@ public class UserBLL {
              String address=jsonObject.getString("address");
             String email=jsonObject.getString("email");
             String phone=jsonObject.getString("phone");
-            String path =jsonObject.getString("avatar");
-            String image=path.substring(path.lastIndexOf("/")+1);
+            String image =jsonObject.getString("avatar");
             user=new User(email,fullName,phone,address,image);
 
     } catch (JSONException e) {
@@ -103,9 +103,32 @@ public class UserBLL {
         }
         return user;
     }
-
+//update with image
+    public boolean update(int id, String name, String email, String address, String phone, MultipartBody.Part image)
+    {
+        Call<ResponseBody> call=userAPI.updateWithImage(id,name,email,address,phone,image);
+        StrictModeClass.StrictMode();
+        try {
+            Response<ResponseBody> response = call.execute();
+            if (response.code() == 200) {
+                isSuccess=true;
+            }
+            else {isSuccess=false;}
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isSuccess;
+    }
+    //update without image
     public boolean update(int id, String name, String email, String address, String phone)
     {
+        RequestBody reqName=RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody reqEmail=RequestBody.create(MediaType.parse("text/plain"), email);
+
+        RequestBody  reqMobile=RequestBody.create(MediaType.parse("text/plain"), phone);
+        RequestBody  reqAddress=RequestBody.create(MediaType.parse("text/plain"), address);
+
         Call<ResponseBody> call=userAPI.update(id,name,email,address,phone);
         StrictModeClass.StrictMode();
         try {

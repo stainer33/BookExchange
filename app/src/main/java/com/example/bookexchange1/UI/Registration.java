@@ -39,15 +39,19 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static com.example.bookexchange1.URL.URL.userAPI;
+
 public class Registration extends AppCompatActivity {
-    EditText etName, etAddress, etPhone,etEmail,etPassword,etConfirmPassword;
-    Button btnSignUp; TextView linkLogin;
+    EditText etName, etAddress, etPhone, etEmail, etPassword, etConfirmPassword;
+    Button btnSignUp;
+    TextView linkLogin;
     CircleImageView imgProfile;
-    TextInputLayout phone_input_layout,email_input_layout,password_input_layout,name_input_layout,address_input_layout,repassword_input_layout;
+    TextInputLayout phone_input_layout, email_input_layout, password_input_layout, name_input_layout, address_input_layout, repassword_input_layout;
     private String imagePath;
     private String imageName = "";
 
@@ -55,21 +59,22 @@ public class Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        etAddress = findViewById(R.id.etAdress);
+        etAddress = findViewById(R.id.etAddress);
         etName = findViewById(R.id.etName);
         etPhone = findViewById(R.id.etPhone);
-        etAddress=findViewById(R.id.etAddress);
+        etAddress = findViewById(R.id.etAddress);
         etPassword = findViewById(R.id.etPassword);
-        etConfirmPassword=findViewById(R.id.etconfirmpassword);
-        email_input_layout=findViewById(R.id.tvEmail);
-        name_input_layout=findViewById(R.id.tvName);
-        address_input_layout=findViewById(R.id.tvAddress);
-        password_input_layout=findViewById(R.id.tvPassword);
-        phone_input_layout=findViewById(R.id.tvPhone);
-        repassword_input_layout=findViewById(R.id.tvConfirmPassword);
+        etEmail = findViewById(R.id.etEmail);
+        etConfirmPassword = findViewById(R.id.etconfirmpassword);
+        email_input_layout = findViewById(R.id.tvEmail);
+        name_input_layout = findViewById(R.id.tvName);
+        address_input_layout = findViewById(R.id.tvAddress);
+        password_input_layout = findViewById(R.id.tvPassword);
+        phone_input_layout = findViewById(R.id.tvPhone);
+        repassword_input_layout = findViewById(R.id.tvConfirmPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
-        imgProfile=findViewById(R.id.imgProfile);
-        linkLogin=findViewById(R.id.linkLogin);
+        imgProfile = findViewById(R.id.imgProfile);
+        linkLogin = findViewById(R.id.linkLogin);
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,50 +82,29 @@ public class Registration extends AppCompatActivity {
                 BrowseImage();
             }
         });
+
         etName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
+                if (hasFocus) {
                     name_input_layout.setErrorEnabled(false);
-                }
-            }
-        });
-        etAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
-                   address_input_layout.setErrorEnabled(false);
-                }
-            }
-        });
-        etPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
-                    phone_input_layout.setErrorEnabled(false);
                 }
             }
         });
         etEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
+                if (hasFocus) {
                     email_input_layout.setErrorEnabled(false);
-                }
-                else
-                {
-                    if(etEmail.getText().toString().trim().length() > 0){
-                        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                } else {
+                    if (etEmail.getText().toString().trim().length() > 0) {
+                        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
                                 "[a-zA-Z0-9_+&*-]+)*@" +
                                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                                 "A-Z]{2,7}$";
-                        Pattern pattern=Pattern.compile(emailRegex);
-                        Matcher matcher=pattern.matcher(etEmail.getText());
-                        if(!matcher.matches()) {
+                        Pattern pattern = Pattern.compile(emailRegex);
+                        Matcher matcher = pattern.matcher(etEmail.getText());
+                        if (!matcher.matches()) {
                             email_input_layout.setErrorEnabled(true);
                             email_input_layout.setError("Invalid email format");
                         }
@@ -129,30 +113,51 @@ public class Registration extends AppCompatActivity {
                 }
             }
         });
-
+        etAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    address_input_layout.setErrorEnabled(false);
+                }
+            }
+        });
+        etPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    phone_input_layout.setErrorEnabled(false);
+                }
+            }
+        });
         etPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
+                if (hasFocus) {
                     password_input_layout.setErrorEnabled(false);
+                } else {
+                    if (etPassword.getText().toString().length() < 7) {
+                        password_input_layout.setErrorEnabled(true);
+                        password_input_layout.setError(" password must longer than 7 character");
+                    }
                 }
-
             }
         });
         etConfirmPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
+                if (hasFocus) {
                     repassword_input_layout.setErrorEnabled(false);
-                }
-                else
-                {
-                    if(!etPassword.getText().toString().equals(etConfirmPassword.getText().toString()))
-                    {
-                        repassword_input_layout.setErrorEnabled(true);
-                        repassword_input_layout.setError("Password doesnot match");
+                } else {
+                    if (TextUtils.isEmpty(etPassword.getText())) {
+                        password_input_layout.setErrorEnabled(true);
+                        password_input_layout.setError("Please enter password");
+
+                    } else {
+                        if (!etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
+                            repassword_input_layout.setErrorEnabled(true);
+                            repassword_input_layout.setError("Password doesnot match");
+
+                        }
                     }
                 }
             }
@@ -160,39 +165,40 @@ public class Registration extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validation();
-                String address = String.valueOf(etAddress.getText());
-                String name = etName.getText().toString();
-                String phone=etAddress.getText().toString();
-                String password=etPassword.getText().toString();
-                String email=etEmail.getText().toString();
+                boolean valid = validation();
+                if (valid) {
+                    String address = etAddress.getText().toString();
+                    String name = etName.getText().toString();
+                    String phone = etAddress.getText().toString();
+                    String password = etPassword.getText().toString();
+                    String email = etEmail.getText().toString();
 
 
-                File file = new File(imagePath);
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part image= MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+                    File file = new File(imagePath);
+                    RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                    MultipartBody.Part body = MultipartBody.Part.createFormData("avatar", file.getName(), requestFile);
 
-
-                UserBLL userBLL= new UserBLL();
-                Boolean result = userBLL.signUp(email,name,password,phone,address,image);
-                if(result==true)
-                {
-                    Toast.makeText(Registration.this, "Registration done", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(Registration.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                    UserBLL userBLL = new UserBLL();
+                    Boolean result = userBLL.signUp(email, name, password, phone, address, body);
+                    if (result == true) {
+                        Toast.makeText(Registration.this, "Registration done", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Registration.this, LoginActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(Registration.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
         linkLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Registration.this,LoginActivity.class);
+                Intent intent = new Intent(Registration.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
     }
+
     private void BrowseImage() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -200,7 +206,7 @@ public class Registration extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (data == null) {
@@ -210,39 +216,18 @@ public class Registration extends AppCompatActivity {
         Uri uri = data.getData();
         imgProfile.setImageURI(uri);
         imagePath = getRealPathFormUri(uri);
+
     }
 
     private String getRealPathFormUri(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
-        CursorLoader loader = new CursorLoader(getApplicationContext(), uri, projection, null, null, null);
+        CursorLoader loader = new CursorLoader(this, uri, projection, null, null, null);
         Cursor cursor = loader.loadInBackground();
         int colIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         String result = cursor.getString(colIndex);
         cursor.close();
         return result;
-    }
-    private void saveImageOnly() {
-        File file = new File(imagePath);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile",
-                file.getName(), requestBody);
-
-        Retrofit retrofit = URL.retrofit;
-        UserAPI userAPI = URL.userAPI;
-        // Call<Void>voidCall=userAPI.signUp(email,fullName,password,mobileNo,address);
-//        Call<ImageResponse> responseBodyCall = userAPI.uploadImage(body);
-//
-//        StrictModeClass.StrictMode();
-//        //Synchronous method
-//        try {
-//            Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
-//            imageName = imageResponseResponse.body().getFilename();
-//            Toast.makeText(this, "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
-//        } catch (IOException e) {
-//            Toast.makeText(this, "Error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//            e.printStackTrace();
-//        }
     }
 
     private void CheckPermission() {
@@ -251,49 +236,51 @@ public class Registration extends AppCompatActivity {
                     Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
     }
-    public void validation()
-    {//checking name edit text
-        if( TextUtils.isEmpty(etName.getText()))
-    {
-        name_input_layout.setErrorEnabled(true);
-        name_input_layout.setError("Please enter full name");
-        return;
-    }
+
+    public boolean validation() {//checking name edit text
+        boolean check = true;
+        if (TextUtils.isEmpty(etName.getText())) {
+            name_input_layout.setErrorEnabled(true);
+            name_input_layout.setError("Please enter full name");
+            check = false;
+            return check;
+        }
 
         //checking address edit text
-    else if( TextUtils.isEmpty(etAddress.getText()))
-    {
-        address_input_layout.setErrorEnabled(true);
-       address_input_layout.setError("Please enter address");
-        return;
-    }
-        //checking phone edit text
-        else if( TextUtils.isEmpty(etPhone.getText()))
-        {
-            phone_input_layout.setErrorEnabled(true);
-           phone_input_layout.setError("Please enter phone number");
-            return;
+        else if (TextUtils.isEmpty(etAddress.getText())) {
+            address_input_layout.setErrorEnabled(true);
+            address_input_layout.setError("Please enter address");
+            check = false;
+            return check;
         }
-    //checking email edit text
-        else if( TextUtils.isEmpty(etEmail.getText()))
-        {
+        //checking phone edit text
+        else if (TextUtils.isEmpty(etPhone.getText())) {
+            phone_input_layout.setErrorEnabled(true);
+            phone_input_layout.setError("Please enter phone number");
+            check = false;
+            return check;
+        }
+        //checking email edit text
+        else if (TextUtils.isEmpty(etEmail.getText())) {
             email_input_layout.setErrorEnabled(true);
             email_input_layout.setError("Please enter email address");
-            return;
+            check = false;
+            return check;
         }
         //checking password edit text
-        else if( TextUtils.isEmpty(etPassword.getText()))
-        {
+        else if (TextUtils.isEmpty(etPassword.getText())) {
             password_input_layout.setErrorEnabled(true);
             password_input_layout.setError("Please enter password");
-            return;
+            check = false;
+            return check;
         }
         //checking repassword edit text
-        else if( TextUtils.isEmpty(etEmail.getText()))
-        {
-           repassword_input_layout.setErrorEnabled(true);
+        else if (TextUtils.isEmpty(etEmail.getText())) {
+            repassword_input_layout.setErrorEnabled(true);
             repassword_input_layout.setError("Please enter repassword");
-            return;
+            check = false;
+            return check;
         }
+        return check;
     }
 }

@@ -15,10 +15,10 @@ public interface ExchangeAPI {
     Call<ResponseBody> add(@Field("book_wanted")Integer bookReqId, @Field("book_offered")Integer bookOfferedId, @Field("requested_to")Integer userId, @Field("requested_by")Integer id, @Field("status")String status);
 
     @GET("exchange/requestedby/{id}")
-    Call<ResponseBody> myActivity(@Path("id") int id);
+    Call<ResponseBody> requestedBy(@Path("id") int id);
 
     @GET("exchange/requestedto/{id}")
-    Call<ResponseBody> notification(@Path("id") int id);
+    Call<ResponseBody> requestedTo(@Path("id") int id);
 
     @DELETE("exchange/{id}")
     Call<ResponseBody>delete(@Path("id") Integer id);

@@ -94,7 +94,7 @@ public class AddBookDialog extends AppCompatDialogFragment {
                 MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
                 BookBLL bookBLL=new BookBLL();
-              boolean res=  bookBLL.add(etBookName.getText().toString(),etAuthorName.getText().toString(),etDes.getText().toString(),body,conditionSpinner.getSelectedItem().toString(), User.id);
+              boolean res=  bookBLL.add(etBookName.getText().toString(),etAuthorName.getText().toString(),etDes.getText().toString(),body,conditionSpinner.getSelectedItem().toString(), User.id,"available");
               if(res){
               Toast.makeText(getActivity(), "Book added successfully", Toast.LENGTH_SHORT).show();
                   dismiss();}

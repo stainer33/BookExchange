@@ -47,7 +47,7 @@ public class BooksListAdapter extends RecyclerView.Adapter <BooksListAdapter.Vie
 //        holder.bookImg.setBackgroundResource(book.getImage());
         holder.bookName.setText(book.getName());
         Picasso.with(context)
-                .load("http://10.0.2.2:8000/storage/books/July2020/"+book.getImage())
+                .load(book.getImage())
 
                 .into(holder.bookImg);
         holder.authorName.setText(book.getAuthor());

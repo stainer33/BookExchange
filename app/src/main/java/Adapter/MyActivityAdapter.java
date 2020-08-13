@@ -55,7 +55,7 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         if (getItemViewType(position) == VIEW_TYPE_ONE) {
             Picasso.with(context)
-                    .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
+                    .load(notifications.get(position).getBookImg())
 
                     .into(  ((PendingView)holder).profileImageView);
             String txtAction = "You requested <b>" + notifications.get(position).getSender() + "</b> to exchange <b>" + notifications.get(position).getRequestedBook() + "</b>  with <b>" + notifications.get(position).getProposedBook() + "</b> ";
@@ -85,10 +85,10 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
         else
         {  Picasso.with(context)
-                .load("http://10.0.2.2:8000/storage/books/July2020/"+notifications.get(position).getBookImg())
+                .load(notifications.get(position).getBookImg())
 
                 .into(  ((CompletedView)holder).profileImageView);
-            String txtAction = "You have exchnage <b>" + notifications.get(position).getRequestedBook() + "</b> with <b>" + notifications.get(position).getProposedBook() + "</b> " +" with <b>"+notifications.get(position).getSender() + "</b> "  ;
+            String txtAction = "You have accepted to  exchange <b>" + notifications.get(position).getRequestedBook() + "</b> with <b>" + notifications.get(position).getProposedBook() + "</b> " +" with <b>"+notifications.get(position).getSender() + "</b> "  ;
             ((CompletedView)holder).txtAction.setText(Html.fromHtml(txtAction));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
             sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
