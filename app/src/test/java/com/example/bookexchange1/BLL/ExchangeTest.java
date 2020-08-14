@@ -27,7 +27,7 @@ public class ExchangeTest {
     public void notification() {
 
         List<Notification> myList = new ArrayList<>();
-        User.id= 1;
+        User.id= 14;
         boolean list;
 
         ExchangeBLL exchangeBLL = new ExchangeBLL();
