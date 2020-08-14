@@ -1,12 +1,9 @@
 package com.example.bookexchange1.BLL;
 
-import android.widget.Toast;
-
 import com.example.bookexchange1.Model.Notification;
 import com.example.bookexchange1.Model.User;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -17,8 +14,6 @@ import StrictMode.StrictModeClass;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.http.Field;
-
 
 import static com.example.bookexchange1.URL.URL.exchangeAPI;
 
@@ -29,7 +24,7 @@ public class ExchangeBLL {
     {
         Call<ResponseBody> call=exchangeAPI.add(bookReqId,bookOfferedId,userId,id,status);
 
-        StrictModeClass.StrictMode();
+//        StrictModeClass.StrictMode();
         try {
             Response<ResponseBody> response = call.execute();
             final Response<ResponseBody> finalResponse = response;

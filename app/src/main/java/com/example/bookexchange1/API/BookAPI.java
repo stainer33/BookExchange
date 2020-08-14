@@ -1,18 +1,10 @@
 package com.example.bookexchange1.API;
 
-import com.example.bookexchange1.Model.Book;
-
-
-import java.util.List;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -26,7 +18,7 @@ public interface BookAPI {
     Call<ResponseBody> add(@Part("name") RequestBody name,
                            @Part("author")RequestBody author,
                            @Part("description") RequestBody description,
-
+                           @Part MultipartBody.Part image,
                            @Part("condition")RequestBody condition,
                            @Part("belongs_to")RequestBody userId);
 
