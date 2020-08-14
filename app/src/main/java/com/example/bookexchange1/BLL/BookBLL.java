@@ -1,12 +1,8 @@
 package com.example.bookexchange1.BLL;
 
-import android.widget.Toast;
-
 import com.example.bookexchange1.Model.Book;
 import com.example.bookexchange1.Model.Owner;
 import com.example.bookexchange1.Model.User;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,7 +20,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 import static com.example.bookexchange1.URL.URL.bookAPI;
-import static com.example.bookexchange1.URL.URL.userAPI;
 
 public class BookBLL {
     boolean isSuccess;
@@ -141,7 +136,7 @@ public class BookBLL {
     public boolean delete(int id)
     {
         Call<ResponseBody> call =bookAPI.delete(id);
-        StrictModeClass.StrictMode();
+//        StrictModeClass.StrictMode();
         try{
             Response<ResponseBody> response =call.execute();
             if(response.code()==200)

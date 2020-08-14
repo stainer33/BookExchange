@@ -85,4 +85,15 @@ public class AddBookTest {
         assertEquals(true, list);
 
     }
+
+    @Test
+    public void delete() {
+
+
+        BookBLL bookBLL = new BookBLL();
+        boolean result = bookBLL.delete(2);
+        assertEquals(true, result);
+
+    }
+
 }
