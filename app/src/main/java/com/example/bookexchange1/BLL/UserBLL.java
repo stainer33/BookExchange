@@ -1,11 +1,6 @@
 package com.example.bookexchange1.BLL;
 
-import android.widget.Toast;
-
 import com.example.bookexchange1.Model.User;
-
-import com.example.bookexchange1.UI.LoginActivity;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,7 +69,7 @@ public class UserBLL {
     public User profile()
     {
         Call<ResponseBody>call=userAPI.getProfile(User.t_email);
-        StrictModeClass.StrictMode();
+//        StrictModeClass.StrictMode();
         try{
             Response<ResponseBody> response =call.execute();
             JSONObject jobj = new JSONObject((response.body().string()));
@@ -83,6 +78,7 @@ public class UserBLL {
             JSONObject jsonObject=jsonArray.getJSONObject(0);
           String fullName=jsonObject.getString("name");
              String address=jsonObject.getString("address");
+//            String address = "asdas";
             String email=jsonObject.getString("email");
             String phone=jsonObject.getString("phone");
             String path =jsonObject.getString("avatar");

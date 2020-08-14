@@ -68,7 +68,7 @@ public class ExchangeBLL {
     {
         List<Notification> notifications=new ArrayList<>();
         Call<ResponseBody> call =exchangeAPI.notification(User.id);
-        StrictModeClass.StrictMode();
+//        StrictModeClass.StrictMode();
         try{
             Response<ResponseBody> response =call.execute();
             JSONObject jobj = new JSONObject((response.body().string()));

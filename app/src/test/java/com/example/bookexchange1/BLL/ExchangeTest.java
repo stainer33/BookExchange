@@ -1,8 +1,14 @@
 package com.example.bookexchange1.BLL;
 
+import com.example.bookexchange1.Model.Notification;
+import com.example.bookexchange1.Model.User;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class ExchangeTest {
 
@@ -19,6 +25,24 @@ public class ExchangeTest {
 
     @Test
     public void notification() {
+
+        List<Notification> myList = new ArrayList<>();
+        User.id= 1;
+        boolean list;
+
+        ExchangeBLL exchangeBLL = new ExchangeBLL();
+        myList = exchangeBLL.notification();
+        int size = myList.size();
+
+        if (size>0){
+            list = true;
+        }
+        else {
+            list = false;
+        }
+        assertEquals(true, list);
+
+
     }
 
     @Test
