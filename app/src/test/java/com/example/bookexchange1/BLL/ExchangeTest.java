@@ -21,7 +21,14 @@ public class ExchangeTest {
 
     @Test
     public void delete() {
+
+
+        ExchangeBLL exchangeBLL = new ExchangeBLL();
+        boolean result = exchangeBLL.delete(4);
+        assertEquals(true, result);
     }
+
+
 
     @Test
     public void notification() {
