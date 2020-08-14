@@ -47,6 +47,21 @@ public class ExchangeTest {
 
     @Test
     public void myActivity() {
+        List<Notification> myList = new ArrayList<>();
+        User.id= 13;
+        boolean list;
+
+        ExchangeBLL exchangeBLL = new ExchangeBLL();
+        myList = exchangeBLL.myActivity();
+        int size = myList.size();
+
+        if (size>0){
+            list = true;
+        }
+        else {
+            list = false;
+        }
+        assertEquals(true, list);
 
     }
 }

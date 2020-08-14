@@ -36,4 +36,10 @@ public class UserTest {
 
     }
 
+    @Test
+    public void update(){
+        UserBLL userBLL = new UserBLL();
+        boolean result = userBLL.update(13,"ram", "ram@gmail.com", "thaiba", "1234567890");
+        assertEquals(true, result);
+    }
 }

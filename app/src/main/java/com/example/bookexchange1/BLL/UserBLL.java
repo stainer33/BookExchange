@@ -96,7 +96,7 @@ public class UserBLL {
     public boolean update(int id, String name, String email, String address, String phone)
     {
         Call<ResponseBody> call=userAPI.update(id,name,email,address,phone);
-        StrictModeClass.StrictMode();
+//        StrictModeClass.StrictMode();
         try {
             Response<ResponseBody> response = call.execute();
             if (response.code() == 200) {
