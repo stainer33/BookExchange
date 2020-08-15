@@ -62,7 +62,7 @@ ImageView imgProfile;
         });
 
         UserBLL userBLL=new UserBLL();
-        User user=userBLL.profile();
+        User user=userBLL.profile(User.t_email);
 
         txtName.setText(user.getFullName());
         txtAddress.setText(user.getAddress());

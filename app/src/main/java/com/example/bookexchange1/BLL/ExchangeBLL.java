@@ -90,14 +90,14 @@ public class ExchangeBLL {
                 JSONObject bookWantedJSONObject = bookWanted.getJSONObject("data");
                 JSONObject bookOfferedJSONObject = bookOffered.getJSONObject("data");
                 JSONObject requestJSONObject = request.getJSONObject("data");
-                int senderId= Integer.parseInt(requestJSONObject.getString("id"));
+                String email= (requestJSONObject.getString("email"));
                 String senderName = requestJSONObject.getString("name");
                 String requestedBook = bookWantedJSONObject.getString("name");
                 String proposedBook = bookOfferedJSONObject.getString("name");
                 String bookImg = bookOfferedJSONObject.getString("image");
                 String time = jsonObject.getString("created_at");
                 if (status.equals("requested")) {
-                    notifications.add(new Notification(id, senderName, requestedBook, proposedBook, time, bookImg, status,senderId));
+                    notifications.add(new Notification(id, senderName, requestedBook, proposedBook, time, bookImg, status,email));
                 }
             }
         } catch (Exception ex) {
@@ -124,7 +124,7 @@ public class ExchangeBLL {
                 JSONObject bookWantedJSONObject = bookWanted.getJSONObject("data");
                 JSONObject bookOfferedJSONObject = bookOffered.getJSONObject("data");
                 JSONObject requestJSONObject = request.getJSONObject("data");
-                int senderId= Integer.parseInt(requestJSONObject.getString("id"));
+                String email= (requestJSONObject.getString("email"));
                 String senderName = requestJSONObject.getString("name");
                 String requestedBook = bookWantedJSONObject.getString("name");
                 String proposedBook = bookOfferedJSONObject.getString("name");
@@ -132,7 +132,7 @@ public class ExchangeBLL {
                 String time = jsonObject.getString("created_at");
                 String status = jsonObject.getString("status");
                 if (status.equals("accepted")) {
-                    notifications.add(new Notification(id, senderName, requestedBook, proposedBook, time, bookImg, status,senderId));
+                    notifications.add(new Notification(id, senderName, requestedBook, proposedBook, time, bookImg, status,email));
                 }
             }
 
@@ -166,14 +166,14 @@ public class ExchangeBLL {
                 JSONObject bookWantedJSONObject = bookWanted.getJSONObject("data");
                 JSONObject bookOfferedJSONObject = bookOffered.getJSONObject("data");
                 JSONObject requestJSONObject = request.getJSONObject("data");
-                 int senderId= Integer.parseInt(requestJSONObject.getString("id"));
+                String email= (requestJSONObject.getString("email"));
                 String senderName = requestJSONObject.getString("name");
                 String requestedBook = bookWantedJSONObject.getString("name");
                 String proposedBook = bookOfferedJSONObject.getString("name");
                 String bookImg = bookOfferedJSONObject.getString("image");
                 String time = jsonObject.getString("created_at");
                 String status = jsonObject.getString("status");
-                notifications.add(new Notification(id, senderName, requestedBook, proposedBook, time, bookImg, status,senderId));
+                notifications.add(new Notification(id, senderName, requestedBook, proposedBook, time, bookImg, status,email));
             }
 
         } catch (Exception ex) {
@@ -200,14 +200,14 @@ public class ExchangeBLL {
                 JSONObject bookWantedJSONObject = bookWanted.getJSONObject("data");
                 JSONObject bookOfferedJSONObject = bookOffered.getJSONObject("data");
                 JSONObject requestJSONObject = request.getJSONObject("data");
-                int senderId= Integer.parseInt(requestJSONObject.getString("id"));
+                String email= (requestJSONObject.getString("email"));
                 String senderName = requestJSONObject.getString("name");
                 String requestedBook = bookWantedJSONObject.getString("name");
                 String proposedBook = bookOfferedJSONObject.getString("name");
                 String bookImg = bookOfferedJSONObject.getString("image");
                 String time = jsonObject.getString("created_at");
                 if (status.equals("accepted")) {
-                    notifications.add(new Notification(id, senderName, requestedBook, proposedBook, time, bookImg, status,senderId));
+                    notifications.add(new Notification(id, senderName, requestedBook, proposedBook, time, bookImg, status,email));
                 }
             }
         } catch (Exception ex) {
@@ -215,5 +215,52 @@ public class ExchangeBLL {
 
         }
         return notifications;
+    }
+    //after accpeting exchange request
+    public boolean accept(Integer id)
+    {
+        Call<ResponseBody> call = exchangeAPI.accept( id,"accepted");
+
+        StrictModeClass.StrictMode();
+        try {
+            Response<ResponseBody> response = call.execute();
+            final Response<ResponseBody> finalResponse = response;
+
+
+            if (response.code() == 200) {
+
+                isSuccess = true;
+            } else {
+                isSuccess = false;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return isSuccess;
+    }
+    public boolean confirm (Integer id)
+    {
+        Call<ResponseBody> call = exchangeAPI.confirm( id);
+
+        StrictModeClass.StrictMode();
+        try {
+            Response<ResponseBody> response = call.execute();
+            final Response<ResponseBody> finalResponse = response;
+
+
+            if (response.code() == 200) {
+
+                isSuccess = true;
+            } else {
+                isSuccess = false;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return isSuccess;
     }
 }

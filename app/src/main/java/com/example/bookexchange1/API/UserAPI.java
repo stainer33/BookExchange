@@ -38,10 +38,7 @@ public interface UserAPI {
     @FormUrlEncoded
     @PUT("user/{id}")
     Call<ResponseBody>update(@Path("id") int id,@Field("name") String name,@Field("email")String email,@Field("address")String address,@Field("phone")String phone);
-    @Multipart
 
-    @PUT("user/{id}")
-    Call<ResponseBody>updateWithImage(@Path("id") int id,@Field("name") String name,@Field("email")String email,@Field("address")String address,@Field("phone")String phone,  @Part MultipartBody.Part avatar);
 
 //    @Multipart
 //    @POST("upload")

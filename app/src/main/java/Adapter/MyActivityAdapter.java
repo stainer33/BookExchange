@@ -13,9 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookexchange1.AddBookDialog;
 import com.example.bookexchange1.BLL.ExchangeBLL;
+import com.example.bookexchange1.ContactDetail;
+import com.example.bookexchange1.EditBookDialog;
 import com.example.bookexchange1.Model.Notification;
 import com.example.bookexchange1.R;
 import com.squareup.picasso.Picasso;
@@ -74,11 +78,12 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 @Override
                 public void onClick(View v) {
                     ExchangeBLL exchangeBLL=new ExchangeBLL();
-                    exchangeBLL.delete(notifications.get(position).getId());
-                    notifications.remove(position);
+                   boolean res=  exchangeBLL.delete(notifications.get(position).getId());
+                    if(res)
+                    {notifications.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, notifications.size());
-                    Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();}
                 }
             });
 
@@ -100,6 +105,14 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            ((CompletedView)holder).btnContact.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  ContactDetail contactDetail= new ContactDetail(notifications.get(position).getSenderEmail());
+                    contactDetail.show(((AppCompatActivity)context).getSupportFragmentManager(),"tag");
+                }
+            });
+
 
         }
 
@@ -121,7 +134,7 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     class PendingView extends RecyclerView.ViewHolder{
         ImageView profileImageView;
         TextView txtAction, txtTime;
-        ImageButton btnEdit, btnDelete;
+        ImageButton  btnDelete;
         public PendingView(@NonNull View itemView) {
             super(itemView);
 
@@ -134,12 +147,14 @@ public class MyActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     class CompletedView extends  RecyclerView.ViewHolder{
         ImageView profileImageView;
         TextView txtAction,txtTime;
+        Button btnContact;
         public CompletedView(@NonNull View itemView) {
             super(itemView);
 
             profileImageView=itemView.findViewById(R.id.profileImageView);
             txtAction=itemView.findViewById(R.id.txtAction);
             txtTime=itemView.findViewById(R.id.txtTime);
+            btnContact=itemView.findViewById(R.id.btnContact);
         }
     }
 }

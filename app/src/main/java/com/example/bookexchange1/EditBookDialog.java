@@ -14,6 +14,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +30,7 @@ import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 
 import com.example.bookexchange1.BLL.BookBLL;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -41,31 +46,52 @@ public class EditBookDialog extends AppCompatDialogFragment {
     private TextView txtImageName;
     private Spinner conditionSpinner;
     private String imagePath;
-    private String imageName;
+    ImageView bookImage;
+    ImageButton btnAddImage;
+    private  int id;
+    private String name, author, des, image;
+    private RadioButton radioButton;
+    private RadioGroup radioGroup;
+    public EditBookDialog(int id,String name, String author, String des, String image) {
+        this.id=id;
+        this.name = name;
+        this.author = author;
+        this.des = des;
+        this.image = image;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate((R.layout.layout_edit_book), null);
+        final View view = inflater.inflate((R.layout.layout_edit_book), null);
 
         builder.setView(view)
                 .setTitle("Edit Book");
-
+        bookImage = view.findViewById(R.id.bookImg);
+        btnAddImage = view.findViewById(R.id.btnAddImage);
         etDes = view.findViewById(R.id.etDescription);
         etAuthorName = view.findViewById(R.id.etAuthorName);
         etBookName = view.findViewById(R.id.etBookName);
+        radioGroup=view.findViewById(R.id.radio_group);
         btnEditBook = view.findViewById(R.id.btnEditBook);
         btnImage = view.findViewById(R.id.btnImage);
         txtImageName = view.findViewById(R.id.txtImageName);
         conditionSpinner = view.findViewById(R.id.Conditionspinner);
         String[] conditions = {"new", "Used"};
+        Picasso.with(getActivity())
+                .load(image)
 
+                .into(bookImage);
+        etBookName.setText(name);
+        etAuthorName.setText(author);
+        etDes.setText(des);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, conditions);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         conditionSpinner.setAdapter(adapter);
-        btnImage.setOnClickListener(new View.OnClickListener() {
+        btnAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CheckPermission();
@@ -75,13 +101,28 @@ public class EditBookDialog extends AppCompatDialogFragment {
         btnEditBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               dismiss();
-                BookBLL bookBLL=new BookBLL();
+
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                // find the radiobutton by returned id
+                radioButton = view.findViewById(selectedId);
+
+                BookBLL bookBLL = new BookBLL();
+               boolean res= bookBLL.edit(id,etBookName.getText().toString(),etAuthorName.getText().toString(),etDes.getText().toString(),conditionSpinner.getSelectedItem().toString(),radioButton.getText().toString());
+               if(res)
+               {
+                   Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+               }
+               else
+               {
+                   Toast.makeText(getActivity(), "couldn't update", Toast.LENGTH_SHORT).show();
+               }
             }
         });
 
         return builder.create();
     }
+
     private void BrowseImage() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -97,10 +138,9 @@ public class EditBookDialog extends AppCompatDialogFragment {
             }
         }
         Uri uri = data.getData();
-
+        bookImage.setImageURI(uri);
         imagePath = getRealPathFormUri(uri);
-        imageName = imagePath.substring(imagePath.lastIndexOf("/") + 1);
-        txtImageName.setText(imageName);
+
     }
 
     private String getRealPathFormUri(Uri uri) {

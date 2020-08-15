@@ -8,7 +8,7 @@ public class Notification {
     private String time;
     private String bookImg;
     private String status;
-    private int senderId;
+    private String senderEmail;
     public String getStatus() {
         return status;
     }
@@ -65,15 +65,15 @@ public class Notification {
         this.bookImg = profileImg;
     }
 
-    public int getSenderId() {
-        return senderId;
+    public String getSenderEmail() {
+        return senderEmail;
     }
 
-    public void setSenderId(int senderId) {
-        this.senderId = senderId;
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
     }
 
-    public Notification(int id, String sender, String requestedBook, String proposedBook, String time, String bookImg, String status, int senderId) {
+    public Notification(int id, String sender, String requestedBook, String proposedBook, String time, String bookImg, String status, String senderEmail) {
         this.id = id;
         this.sender = sender;
         this.requestedBook = requestedBook;
@@ -81,9 +81,8 @@ public class Notification {
         this.time = time;
         this.bookImg = bookImg;
         this.status = status;
-        this.senderId = senderId;
+        this.senderEmail = senderEmail;
     }
-
 }
 
 

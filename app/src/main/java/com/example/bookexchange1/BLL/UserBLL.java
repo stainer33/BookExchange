@@ -79,9 +79,9 @@ public class UserBLL {
        return isSuccess;
     }
 
-    public User profile()
+    public User profile(String email)
     {
-        Call<ResponseBody>call=userAPI.getProfile(User.t_email);
+        Call<ResponseBody>call=userAPI.getProfile(email);
         StrictModeClass.StrictMode();
         try{
             Response<ResponseBody> response =call.execute();
@@ -91,10 +91,10 @@ public class UserBLL {
             JSONObject jsonObject=jsonArray.getJSONObject(0);
           String fullName=jsonObject.getString("name");
              String address=jsonObject.getString("address");
-            String email=jsonObject.getString("email");
+            String Email=jsonObject.getString("email");
             String phone=jsonObject.getString("phone");
             String image =jsonObject.getString("avatar");
-            user=new User(email,fullName,phone,address,image);
+            user=new User(Email,fullName,phone,address,image);
 
     } catch (JSONException e) {
             e.printStackTrace();
@@ -103,23 +103,7 @@ public class UserBLL {
         }
         return user;
     }
-//update with image
-    public boolean update(int id, String name, String email, String address, String phone, MultipartBody.Part image)
-    {
-        Call<ResponseBody> call=userAPI.updateWithImage(id,name,email,address,phone,image);
-        StrictModeClass.StrictMode();
-        try {
-            Response<ResponseBody> response = call.execute();
-            if (response.code() == 200) {
-                isSuccess=true;
-            }
-            else {isSuccess=false;}
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return isSuccess;
-    }
+
     //update without image
     public boolean update(int id, String name, String email, String address, String phone)
     {

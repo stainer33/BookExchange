@@ -54,7 +54,8 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialog();
+                EditBookDialog editBookDialog= new EditBookDialog(book.getId(),book.getName(),book.getAuthor(),book.getDes(),book.getImage());
+                editBookDialog.show(((AppCompatActivity)context).getSupportFragmentManager(),"tag");
             }
         });
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -78,11 +79,7 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.ViewHold
     }
 
 
-    public void openDialog()
-    {
-        EditBookDialog editBookDialog= new EditBookDialog();
-        editBookDialog.show(((AppCompatActivity)context).getSupportFragmentManager(),"tag");
-    }
+
     @Override
     public int getItemCount() {
         return books.size();

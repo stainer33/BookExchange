@@ -1,20 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
+    android:background="#D4D4D4">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:id="@+id/bookImg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/book6"
+            android:scaleType="fitXY" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnAddImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round"
+            android:padding="6dp"
+            android:src="@drawable/camera"
+            app:layout_constraintBottom_toBottomOf="@+id/bookImg"
+            app:layout_constraintEnd_toEndOf="@+id/bookImg"
+
+            android:layout_marginBottom="10sp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_input_layout"
+        android:fontFamily="@font/cantora_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        app:errorEnabled="true"
+        android:layout_marginHorizontal="15dp"
+        android:theme="@style/TextInputLabel">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name of the book"
-        android:layout_margin="15dp"
-        android:id="@+id/etBookName"/>
+        android:id="@+id/etBookName"
+        android:hint="Name of the book"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/author_input_layout"
+        android:fontFamily="@font/cantora_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Author"
+        app:errorEnabled="true"
+        android:layout_marginHorizontal="15dp"
+        android:theme="@style/TextInputLabel">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Author of the book"
-        android:layout_margin="15dp"
+
         android:id="@+id/etAuthorName"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/des_input_layout"
+        android:fontFamily="@font/cantora_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        app:errorEnabled="true"
+        android:layout_marginHorizontal="15dp"
+        android:theme="@style/TextInputLabel">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,36 +82,39 @@
         android:minLines="2"
         android:gravity="top|left"
         android:maxLines="10"
-        android:layout_margin="15dp"
+
         android:id="@+id/etDescription"/>
+    </com.google.android.material.textfield.TextInputLayout>
     <Spinner android:id="@+id/Conditionspinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="13sp"
         android:layout_marginHorizontal="20sp"/>
-    <TextView
+
+    <RadioGroup
+        android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_margin="15dp"
-        android:text="Select cover of the book"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="15dp">
+
+        <RadioButton
+            android:id="@+id/radioAvailable"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Select image"
-            android:id="@+id/btnImage"
-            android:layout_marginHorizontal="15dp"/>
-        <TextView
-            android:layout_width="wrap_content"
+            android:checked="true"
+            android:text="available"
+            android:buttonTint="#000"/>
+
+        <RadioButton
+            android:id="@+id/radioUnavailable"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-
-            android:id="@+id/txtImageName"/>
-
-    </LinearLayout>
-
+            android:text="unavailable"
+            android:buttonTint="#000"/>
+    </RadioGroup>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

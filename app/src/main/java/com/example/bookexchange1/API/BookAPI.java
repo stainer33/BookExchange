@@ -24,12 +24,20 @@ public interface BookAPI {
     @Multipart
     @POST("book/add")
     Call<ResponseBody> add(@Part("name") RequestBody name,
-                           @Part("author")RequestBody author,
+                           @Part("author") RequestBody author,
                            @Part("description") RequestBody description,
-                            @Part MultipartBody.Part image,
-                           @Part("condition")RequestBody condition,
-                           @Part("belongs_to")RequestBody userId,
-                            @Part ("status")RequestBody status);
+                           @Part MultipartBody.Part image,
+                           @Part("condition") RequestBody condition,
+                           @Part("belongs_to") RequestBody userId,
+                           @Part("status") RequestBody status);
+
+    @POST("book/{id}")
+    Call<ResponseBody> update(@Path("id") Integer id,
+                              @Field("name") String name,
+                              @Field("author") String author,
+                              @Field("description") String description,
+                              @Field("condition") String condition,
+                              @Field("status") String status);
 
     @GET("book")
     Call<ResponseBody> getAll();
@@ -38,6 +46,6 @@ public interface BookAPI {
     Call<ResponseBody> getMyBooks();
 
     @DELETE("book/{id}")
-    Call<ResponseBody>delete(@Path("id") Integer id);
+    Call<ResponseBody> delete(@Path("id") Integer id);
 
 }

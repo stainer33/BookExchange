@@ -159,4 +159,24 @@ public class BookBLL {
         }
         return isSuccess;
     }
+    public boolean edit (int id,String name, String author,String description,String condition,String status)
+    {
+        Call<ResponseBody> call =bookAPI.update(id,name,author,description,condition,status);
+        StrictModeClass.StrictMode();
+        try{
+            Response<ResponseBody> response =call.execute();
+            if(response.code()==200)
+            {
+                isSuccess=true;
+
+            }
+            else
+            {
+                isSuccess=false;
+            }}
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isSuccess;
+    }
 }

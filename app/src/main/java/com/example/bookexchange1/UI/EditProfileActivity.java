@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class EditProfileActivity extends AppCompatActivity {
     Button btnEditProfile;
     CircleImageView imgProfile;
     String imagePath = "";
-
+    ImageButton btnAddImage;
+    UserBLL userBLL = new UserBLL();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +51,8 @@ public class EditProfileActivity extends AppCompatActivity {
         etPhone = findViewById(R.id.etPhone);
         btnEditProfile = findViewById(R.id.btnEditProfile);
         imgProfile = findViewById(R.id.imgProfile);
-        final UserBLL userBLL = new UserBLL();
-        final User user = userBLL.profile();
+        btnAddImage=findViewById(R.id.btnAddImage);
+        final User user = userBLL.profile(User.t_email);
 
         etName.setText(user.getFullName());
         etAddress.setText(user.getAddress());
@@ -67,10 +69,17 @@ public class EditProfileActivity extends AppCompatActivity {
                 BrowseImage();
             }
         });
+        btnAddImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckPermission();
+                BrowseImage();
+            }
+        });
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (imagePath.equals("")) {
+
                     boolean res = userBLL.update(User.id, etName.getText().toString(), etEmail.getText().toString(), etAddress.getText().toString(), etPhone.getText().toString());
                     if (res) {
                         Toast.makeText(EditProfileActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
@@ -79,21 +88,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(EditProfileActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else{
 
-                    File file = new File(imagePath);
-                    RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                    MultipartBody.Part body = MultipartBody.Part.createFormData("avatar", file.getName(), requestFile);
-                    boolean res = userBLL.update(User.id, etName.getText().toString(), etEmail.getText().toString(), etAddress.getText().toString(), etPhone.getText().toString(),body);
-                    if (res) {
-                        Toast.makeText(EditProfileActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(EditProfileActivity.this, DashboardActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(EditProfileActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    }
-                }
+
             }
         });
     }

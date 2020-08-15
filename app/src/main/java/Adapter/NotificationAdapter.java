@@ -6,12 +6,18 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookexchange1.BLL.ExchangeBLL;
+import com.example.bookexchange1.ContactDetail;
 import com.example.bookexchange1.Model.Notification;
 import com.example.bookexchange1.R;
 import com.squareup.picasso.Picasso;
@@ -27,6 +33,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     List<Notification>notifications;
     final int VIEW_TYPE_ONE = 1;//pending
     final int VIEW_TYPE_TWO = 2;//completed
+    ExchangeBLL exchangeBLL= new ExchangeBLL();
     public NotificationAdapter(Context context, List<Notification> notifications) {
         this.context = context;
         this.notifications = notifications;
@@ -46,7 +53,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         if (getItemViewType(position) == VIEW_TYPE_ONE) {
 
         Picasso.with(context)
@@ -64,7 +71,41 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 ((PendingView)holder).txtTime.setText(ago);
             } catch (ParseException e) {
                 e.printStackTrace();
-            }}
+            }
+            ((PendingView)holder).btnAccept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  boolean res=  exchangeBLL.accept(notifications.get(position).getId());
+                    if(res)
+                    {notifications.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, notifications.size());
+                        Toast.makeText(context, "Request accepted", Toast.LENGTH_SHORT).show();}
+                  else
+                  {
+                      Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                  }
+                }
+            });
+            ((PendingView)holder).btnDecline.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean res =exchangeBLL.delete(notifications.get(position).getId());
+                    if(res)
+                    {
+                        notifications.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, notifications.size());
+                        Toast.makeText(context, "Request Declined", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
         else
         {
             Picasso.with(context)
@@ -83,6 +124,30 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            ((CompletedView)holder).btnConfirmed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean res =exchangeBLL.confirm(notifications.get(position).getId());
+                    if(res)
+                    {notifications.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, notifications.size());
+                        Toast.makeText(context, "Exchanged Successfully", Toast.LENGTH_SHORT).show();}
+                    else
+                    {
+                        Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            ((CompletedView)holder).btnContact.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ContactDetail contactDetail= new ContactDetail(notifications.get(position).getSenderEmail());
+                    contactDetail.show(((AppCompatActivity)context).getSupportFragmentManager(),"tag");
+
+                }
+            });
+
         }
 
     }
@@ -104,22 +169,28 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     class PendingView extends RecyclerView.ViewHolder{
         ImageView profileImageView;
         TextView txtAction,txtTime;
+        Button btnAccept, btnDecline;
         public PendingView(@NonNull View itemView){
             super(itemView);
             profileImageView=itemView.findViewById(R.id.profileImageView);
             txtAction=itemView.findViewById((R.id.txtAction));
             txtTime=itemView.findViewById(R.id.txtTime);
+            btnAccept=itemView.findViewById(R.id.btnAccept);
+            btnDecline=itemView.findViewById(R.id.btnDecline);
         }
     }
     class CompletedView extends  RecyclerView.ViewHolder{
         ImageView profileImageView;
         TextView txtAction,txtTime;
+        Button btnContact, btnConfirmed;
         public CompletedView(@NonNull View itemView) {
             super(itemView);
 
             profileImageView=itemView.findViewById(R.id.profileImageView);
             txtAction=itemView.findViewById(R.id.txtAction);
             txtTime=itemView.findViewById(R.id.txtTime);
+            btnContact=itemView.findViewById(R.id.btnContact);
+            btnConfirmed=itemView.findViewById(R.id.btnExchangedCompleted);
         }
     }
 }
