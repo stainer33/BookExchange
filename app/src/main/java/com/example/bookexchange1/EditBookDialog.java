@@ -3,6 +3,7 @@ package com.example.bookexchange1;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -27,6 +28,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.content.CursorLoader;
 
 import com.example.bookexchange1.BLL.BookBLL;
@@ -34,6 +37,9 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
+import Fragments.HomeFragment;
+import Fragments.MyBooksFragment;
+import Fragments.ProfileFragment;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -110,8 +116,11 @@ public class EditBookDialog extends AppCompatDialogFragment {
                 BookBLL bookBLL = new BookBLL();
                boolean res= bookBLL.edit(id,etBookName.getText().toString(),etAuthorName.getText().toString(),etDes.getText().toString(),conditionSpinner.getSelectedItem().toString(),radioButton.getText().toString());
                if(res)
-               {
+               {Fragment fragment = new ProfileFragment();
+
                    Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+                   dismiss();
+
                }
                else
                {
@@ -140,6 +149,12 @@ public class EditBookDialog extends AppCompatDialogFragment {
         Uri uri = data.getData();
         bookImage.setImageURI(uri);
         imagePath = getRealPathFormUri(uri);
+
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+
 
     }
 

@@ -52,7 +52,7 @@ public class Registration extends AppCompatActivity {
     TextView linkLogin;
     CircleImageView imgProfile;
     TextInputLayout phone_input_layout, email_input_layout, password_input_layout, name_input_layout, address_input_layout, repassword_input_layout;
-    private String imagePath;
+    private String imagePath="";
     private String imageName = "";
 
     @Override
@@ -239,11 +239,17 @@ public class Registration extends AppCompatActivity {
 
     public boolean validation() {//checking name edit text
         boolean check = true;
-        if (TextUtils.isEmpty(etName.getText())) {
+        if(imagePath.equals(""))
+        {
+            Toast.makeText(this, "Please select image", Toast.LENGTH_SHORT).show();
+            check = false;
+
+        }
+      else  if (TextUtils.isEmpty(etName.getText())) {
             name_input_layout.setErrorEnabled(true);
             name_input_layout.setError("Please enter full name");
             check = false;
-            return check;
+
         }
 
         //checking address edit text
@@ -251,35 +257,35 @@ public class Registration extends AppCompatActivity {
             address_input_layout.setErrorEnabled(true);
             address_input_layout.setError("Please enter address");
             check = false;
-            return check;
+
         }
         //checking phone edit text
         else if (TextUtils.isEmpty(etPhone.getText())) {
             phone_input_layout.setErrorEnabled(true);
             phone_input_layout.setError("Please enter phone number");
             check = false;
-            return check;
+
         }
         //checking email edit text
         else if (TextUtils.isEmpty(etEmail.getText())) {
             email_input_layout.setErrorEnabled(true);
             email_input_layout.setError("Please enter email address");
             check = false;
-            return check;
+
         }
         //checking password edit text
         else if (TextUtils.isEmpty(etPassword.getText())) {
             password_input_layout.setErrorEnabled(true);
             password_input_layout.setError("Please enter password");
             check = false;
-            return check;
+
         }
         //checking repassword edit text
         else if (TextUtils.isEmpty(etEmail.getText())) {
             repassword_input_layout.setErrorEnabled(true);
             repassword_input_layout.setError("Please enter repassword");
             check = false;
-            return check;
+
         }
         return check;
     }

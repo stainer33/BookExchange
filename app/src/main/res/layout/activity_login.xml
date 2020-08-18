@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:text="Don't have an Account? Login"
+            android:text="Don't have an Account? Sign Up"
             android:textColor="	#FFFFFF"
             android:textStyle="bold"></TextView>
 

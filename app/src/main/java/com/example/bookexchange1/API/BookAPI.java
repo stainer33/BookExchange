@@ -16,6 +16,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -31,7 +32,8 @@ public interface BookAPI {
                            @Part("belongs_to") RequestBody userId,
                            @Part("status") RequestBody status);
 
-    @POST("book/{id}")
+    @FormUrlEncoded
+    @PUT("book/{id}")
     Call<ResponseBody> update(@Path("id") Integer id,
                               @Field("name") String name,
                               @Field("author") String author,

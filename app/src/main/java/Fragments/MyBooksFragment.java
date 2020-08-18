@@ -3,6 +3,7 @@ package Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +44,7 @@ public class MyBooksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
             View view =inflater.inflate(R.layout.fragment_my_books, container, false);
         myBooksRecylerView=view.findViewById(R.id.myBooksRecyclerView);
         btnAddBook=view.findViewById(R.id.btnAddbook);
@@ -77,6 +79,7 @@ public class MyBooksFragment extends Fragment {
                 filter(s.toString());
             }
         });
+
 
 
         return view;
