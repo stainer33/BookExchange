@@ -7,17 +7,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name of the book"
+        android:fontFamily="@font/cantora_one"
         android:layout_margin="15dp"
         android:id="@+id/etBookName"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Author of the book"
+        android:fontFamily="@font/cantora_one"
         android:layout_margin="15dp"
         android:id="@+id/etAuthorName"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cantora_one"
         android:hint="Description of the book"
         android:inputType="textMultiLine"
         android:lines="8"
@@ -34,6 +37,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cantora_one"
         android:textSize="18sp"
         android:layout_margin="15dp"
         android:text="Select cover of the book"/>
@@ -44,12 +48,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select image"
+            android:fontFamily="@font/cantora_one"
             android:id="@+id/btnImage"
             android:layout_marginHorizontal="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:fontFamily="@font/cantora_one"
             android:id="@+id/txtImageName"/>
 
     </LinearLayout>
@@ -58,6 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add"
+        android:textSize="30dp"
+        android:fontFamily="@font/cantora_one"
         android:layout_margin="15dp"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"

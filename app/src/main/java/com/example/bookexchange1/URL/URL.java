@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class URL {
     public static  final String base_url="http://10.0.2.2:8000/api/";
 
-   
+    public static String token = "Bearer ";
     public static final Retrofit retrofit=new Retrofit.Builder()
             .baseUrl(base_url)
 

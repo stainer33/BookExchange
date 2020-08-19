@@ -3,6 +3,7 @@ package com.example.bookexchange1.UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ import com.example.bookexchange1.API.UserAPI;
 import com.example.bookexchange1.BLL.UserBLL;
 import com.example.bookexchange1.Model.User;
 import com.example.bookexchange1.R;
+import com.example.bookexchange1.URL.URL;
 import com.google.android.material.textfield.TextInputLayout;
 
 
@@ -31,6 +33,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Url;
 
 import static com.example.bookexchange1.URL.URL.userAPI;
 
@@ -149,5 +152,15 @@ public class LoginActivity extends AppCompatActivity {
             password_input_layout.setErrorEnabled(true);
             password_input_layout.setError("Please enter password");
         }
+    }
+
+    private void SavePassword(){
+        String token = URL.token;
+        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("password",token);
+        editor.putString("Email",etEmail.getText().toString());
+        editor.putString("Password",etPassword.getText().toString());
+        editor.commit();
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="#FFFF"
+    android:background="@drawable/background"
     android:paddingRight="15dp"
     android:paddingLeft="15dp"
     android:paddingTop="5dp"
@@ -15,29 +15,25 @@
                 android:text="My Profile"
                 android:padding="10dp"
                 android:textSize="35dp"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/cantora_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgProfile"
             android:layout_gravity="center"
-
             android:layout_marginLeft="15dp"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginBottom="20dp" />
     <TextView
         android:id="@+id/txtName"
-
         android:padding="10dp"
         android:textSize="30dp"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:fontFamily="@font/cantora_one"
@@ -72,7 +68,7 @@
     <EditText
 
         android:id="@+id/txtAddress"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textColorHint="#fff"
         android:fontFamily="@font/cantora_one"
         android:textSize="20sp"
@@ -90,7 +86,7 @@
     <EditText
 
         android:id="@+id/txtPhone"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textColorHint="#fff"
         android:fontFamily="@font/cantora_one"
         android:textSize="20sp"
@@ -106,7 +102,7 @@
     <EditText
 
         android:id="@+id/txtEmail"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textColorHint="#fff"
         android:fontFamily="@font/cantora_one"
         android:textSize="20sp"
@@ -138,8 +134,7 @@
     <TextView
         android:id="@+id/tvLogoutP"
         android:gravity="center"
-        android:background="#FFFF"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:fontFamily="@font/cantora_one"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"

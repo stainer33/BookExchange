@@ -36,6 +36,7 @@
             android:theme="@style/TextInputLabel">
         <EditText
             android:id="@+id/etEmail"
+            android:textColor="#fff"
             android:fontFamily="@font/cantora_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
@@ -54,6 +55,7 @@
             android:theme="@style/TextInputLabel">
         <EditText
             android:id="@+id/etPassword"
+            android:textColor="#fff"
             android:fontFamily="@font/cantora_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

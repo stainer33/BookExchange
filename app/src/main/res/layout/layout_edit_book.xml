@@ -45,6 +45,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cantora_one"
         android:id="@+id/etBookName"
         android:hint="Name of the book"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,8 +61,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cantora_one"
         android:hint="Author of the book"
-
         android:id="@+id/etAuthorName"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -76,6 +77,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cantora_one"
         android:hint="Description of the book"
         android:inputType="textMultiLine"
         android:lines="8"
@@ -100,6 +102,7 @@
 
         <RadioButton
             android:id="@+id/radioAvailable"
+            android:fontFamily="@font/cantora_one"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -110,6 +113,7 @@
         <RadioButton
             android:id="@+id/radioUnavailable"
             android:layout_width="0dp"
+            android:fontFamily="@font/cantora_one"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="unavailable"
@@ -119,6 +123,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Edit"
+        android:textSize="30dp"
+        android:fontFamily="@font/cantora_one"
         android:layout_margin="15dp"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="#FFFF"
+    android:background="@drawable/background"
     android:paddingRight="15dp"
     android:paddingLeft="15dp"
     android:paddingTop="5dp">
@@ -15,7 +15,7 @@
         android:text="Edit Profile"
         android:padding="10dp"
         android:textSize="35dp"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:fontFamily="@font/cantora_one"
@@ -32,7 +32,6 @@
             android:id="@+id/imgProfile"
             android:layout_width="150dp"
             android:layout_height="150dp"
-
             android:layout_gravity="center"
             android:src="@drawable/book6"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +55,8 @@
         android:id="@+id/etName"
         android:padding="10dp"
         android:textSize="20dp"
-        android:textColor="#000"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
         android:hint="Enter your fullname"
         android:layout_marginHorizontal="20dp"
         android:layout_gravity="center"
@@ -69,8 +69,8 @@
 
     <EditText
         android:id="@+id/etAddress"
-        android:textColor="#000"
-
+        android:textColorHint="#fff"
+        android:textColor="#fff"
         android:fontFamily="@font/cantora_one"
         android:textSize="20sp"
         android:paddingTop="30dp"
@@ -85,7 +85,8 @@
     <EditText
         android:inputType="phone"
         android:id="@+id/etPhone"
-        android:textColor="#000"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
         android:fontFamily="@font/cantora_one"
         android:textSize="20sp"
         android:paddingTop="20dp"
@@ -99,7 +100,8 @@
     <EditText
         android:inputType="text"
         android:id="@+id/etEmail"
-        android:textColor="#000"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
         android:fontFamily="@font/cantora_one"
         android:textSize="20sp"
         android:paddingTop="20dp"
@@ -113,15 +115,15 @@
 
     <Button
         android:id="@+id/btnEditProfile"
+        android:fontFamily="@font/cantora_one"
         android:text="Update"
         android:textColor="#FFFF"
-        android:background="#000080"
-        android:fontFamily="@font/cantora_one"
-        android:layout_width="wrap_content"
+        android:background="@drawable/round"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginVertical="30dp"
+        android:textSize="25dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"/>
 
 
